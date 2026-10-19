@@ -907,8 +907,10 @@
   $$('[data-close]', menu).forEach(function (a) { a.addEventListener('click', function () { toggleMenu(false); }); });
   addEventListener('keydown', function (e) { if (e.key === 'Escape') toggleMenu(false); });
 
-  /* ---------- magnetic links and buttons ---------- */
-  if (fine && !reduce) {
+  /* ---------- magnetic links and buttons ----------
+     Turned off: text links drifting toward the cursor made them hard to read and click. */
+  var MAGNETIC = false;
+  if (MAGNETIC && fine && !reduce) {
     var mags = $$('[data-magnetic]').map(function (el) {
       return { el: el, s: parseFloat(el.dataset.magnetic) || 0.35, r: parseFloat(el.dataset.radius) || 56, cap: parseFloat(el.dataset.cap) || 14, x: 0, y: 0 };
     });
