@@ -120,6 +120,36 @@ footer{margin-top:6rem!important}
   </figure>
 </section>
 
+<!-- ============================ REEL ============================ -->
+<style>
+.rl-wrap{position:relative;margin-top:2.5rem;border:1px solid rgba(255,255,255,.1);background:#0b0a09;aspect-ratio:16/9;overflow:hidden}
+.rl-wrap video{display:block;width:100%;height:100%;object-fit:cover}
+.rl-snd{position:absolute;right:14px;bottom:14px;display:inline-flex;align-items:center;gap:.55rem;padding:.55rem .9rem;border:1px solid rgba(201,168,117,.6);background:rgba(11,10,9,.72);color:#c9a875;font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .3s,color .3s}
+.rl-snd:hover{background:#c9a875;color:#0b0a09}
+.rl-cap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.75rem 2rem;margin-top:1.1rem}
+.rl-cap p{max-width:42rem;line-height:1.7;color:rgba(243,240,234,.65);font-size:.97rem}
+</style>
+<section id="reel" class="px-6 md:px-14 lg:px-20 mt-32 md:mt-52">
+  <div class="flex items-baseline justify-between gap-6" data-reveal>
+    <h2 class="font-serif text-4xl font-semibold tracking-tight md:text-6xl">Reel</h2>
+    <p class="label">15 s <span class="text-bronze/60">/</span> Motion</p>
+  </div>
+  <div class="rl-wrap" data-reveal>
+    <video id="rl-v" src="/reel/drift.mp4" poster="/reel/poster.webp" autoplay muted loop playsinline preload="metadata" aria-label="Drift, a 15-second motion piece"></video>
+    <button type="button" class="rl-snd" id="rl-s" aria-pressed="false">Sound on</button>
+  </div>
+  <div class="rl-cap" data-reveal>
+    <p>Drift. One line becomes a film record, then flight routes from Atlanta, then cricket pressure, then a scorecard. All three projects in fifteen seconds, cut to 120 BPM. Built in code: one HTML canvas, rendered frame by frame, with the soundtrack synthesized in the browser.</p>
+    <p class="label">RPDI <span class="text-bronze/60">·</span> ADMI <span class="text-bronze/60">·</span> DTM</p>
+  </div>
+  <script>
+  (function(){var v=document.getElementById('rl-v'),b=document.getElementById('rl-s');if(!v||!b)return;
+    b.addEventListener('click',function(){v.muted=!v.muted;if(!v.muted){v.currentTime=0;v.play()}b.textContent=v.muted?'Sound on':'Sound off';b.setAttribute('aria-pressed',String(!v.muted))});
+    if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();v.controls=true}
+  })();
+  </script>
+</section>
+
 <!-- ============================ FEATURED ============================ -->
 <section id="featured" class="px-6 md:px-14 lg:px-20 mt-32 md:mt-52">
   <div class="flex items-baseline justify-between gap-6" data-reveal>
@@ -1792,7 +1822,7 @@ footer{margin-top:6rem!important}
 (function(){
   var $=function(q,c){return (c||document).querySelector(q)};
   var $$=function(q,c){return Array.prototype.slice.call((c||document).querySelectorAll(q))};
-  var VIEWS={home:['home','featured'],projects:['projects'],hcsl:['hcsl'],screenplays:['screenplays'],writing:['writing'],photos:['photos'],about:['about'],contact:['contact']};
+  var VIEWS={home:['home','reel','featured'],projects:['projects'],hcsl:['hcsl'],screenplays:['screenplays'],writing:['writing'],photos:['photos'],about:['about'],contact:['contact']};
   var tops=$$('main>section');
   function viewOf(el){var sec=el.closest('main>section');if(!sec)return 'home';for(var k in VIEWS)if(VIEWS[k].indexOf(sec.id)>-1)return k;return 'home'}
   var ind=$('#nav-ind');var CUR='home';
