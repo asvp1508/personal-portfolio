@@ -36,6 +36,7 @@
     <div class="relative hidden md:block">
       <ul class="flex items-center gap-10">
           <li><a href="#projects" data-nav="projects" data-active="false" data-magnetic="0.35" class="block py-2 text-[0.8rem] font-medium uppercase tracking-widest text-bone/55 transition-colors duration-300 hover:text-bone data-[active=true]:text-bone">Projects</a></li>
+          <li><a href="#hcsl" data-nav="hcsl" data-active="false" data-magnetic="0.35" class="block py-2 text-[0.8rem] font-medium uppercase tracking-widest text-bone/55 transition-colors duration-300 hover:text-bone data-[active=true]:text-bone">HCSL</a></li>
           <li><a href="#screenplays" data-nav="screenplays" data-active="false" data-magnetic="0.35" class="block py-2 text-[0.8rem] font-medium uppercase tracking-widest text-bone/55 transition-colors duration-300 hover:text-bone data-[active=true]:text-bone">Screenplays</a></li>
           <li><a href="#writing" data-nav="writing" data-active="false" data-magnetic="0.35" class="block py-2 text-[0.8rem] font-medium uppercase tracking-widest text-bone/55 transition-colors duration-300 hover:text-bone data-[active=true]:text-bone">Writing</a></li>
           <li><a href="#photos" data-nav="photos" data-active="false" data-magnetic="0.35" class="block py-2 text-[0.8rem] font-medium uppercase tracking-widest text-bone/55 transition-colors duration-300 hover:text-bone data-[active=true]:text-bone">Photos</a></li>
@@ -53,6 +54,7 @@
   <div class="flex h-full flex-col justify-center gap-4 px-8 pt-8">
       <a href="#home" data-close class="font-serif text-5xl font-semibold tracking-tight text-bone/90 transition-colors hover:text-bronze">Home</a>
       <a href="#projects" data-close class="font-serif text-5xl font-semibold tracking-tight text-bone/90 transition-colors hover:text-bronze">Projects</a>
+      <a href="#hcsl" data-close class="font-serif text-5xl font-semibold tracking-tight text-bone/90 transition-colors hover:text-bronze">HCSL</a>
       <a href="#screenplays" data-close class="font-serif text-5xl font-semibold tracking-tight text-bone/90 transition-colors hover:text-bronze">Screenplays</a>
       <a href="#writing" data-close class="font-serif text-5xl font-semibold tracking-tight text-bone/90 transition-colors hover:text-bronze">Writing</a>
       <a href="#photos" data-close class="font-serif text-5xl font-semibold tracking-tight text-bone/90 transition-colors hover:text-bronze">Photos</a>
@@ -248,6 +250,227 @@
       </div>
     </div>
   </a>
+</section>
+
+<!-- ============================ HCSL ============================ -->
+<section id="hcsl" class="px-6 md:px-14 lg:px-20 mt-32 scroll-mt-24 md:mt-52">
+<style>
+#hcsl .hc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,19rem),1fr));border-top:1px solid rgba(255,255,255,.08);border-left:1px solid rgba(255,255,255,.08)}
+#hcsl .hc-card{display:flex;flex-direction:column;min-width:0;border-right:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
+#hcsl .hc-art{aspect-ratio:240/110;background:#100e0c;border-bottom:1px solid rgba(255,255,255,.06)}
+#hcsl .hc-art svg{display:block}
+#hcsl .hc-body{padding:1.4rem 1.4rem 1.6rem}
+#hcsl .hc-num{font-size:.7rem;letter-spacing:.12em;color:#c9a875}
+#hcsl .hc-name{margin-top:.35rem;font-family:Playfair Display,Georgia,serif;font-size:1.65rem;font-weight:600;line-height:1.1;letter-spacing:-.02em}
+#hcsl .hc-full{margin-top:.2rem;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:hsla(40,27%,94%,.45)}
+#hcsl .hc-one{margin-top:.9rem;font-size:.95rem;line-height:1.6;color:hsla(40,27%,94%,.68)}
+#hcsl .hc-more{margin-top:1rem;font-size:.88rem;color:hsla(40,27%,94%,.65)}
+#hcsl .hc-more summary{cursor:pointer;font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#c9a875}
+#hcsl .hc-more summary::after{content:" +"}#hcsl .hc-more[open] summary::after{content:" −"}
+#hcsl .hc-more ul{margin-top:.8rem;display:grid;gap:.45rem}
+#hcsl .hc-more li{padding-left:1rem;position:relative;line-height:1.55}
+#hcsl .hc-more li::before{content:"";position:absolute;left:0;top:.62em;width:.4rem;height:1px;background:#c9a875}
+#hcsl .hc-strat{margin-top:.9rem;line-height:1.55}#hcsl .hc-strat span{display:block;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:hsla(40,27%,94%,.45);margin-bottom:.2rem}
+#hcsl .hc-hero{max-width:26rem;aspect-ratio:240/110}
+#hcsl .hc-rules{display:grid;gap:.5rem;font-size:.95rem;line-height:1.6;color:hsla(40,27%,94%,.65)}
+#hcsl svg *{transform-box:fill-box}
+/* animations: looping, independent of scroll */
+#hcsl .hc-fr{opacity:0;animation:hcFr 6s infinite}#hcsl .hc-fr1{animation-delay:2s}#hcsl .hc-fr2{animation-delay:4s}
+@keyframes hcFr{0%,2%{opacity:0}5%,30%{opacity:1}33%,100%{opacity:0}}
+#hcsl .hc-grow{transform-origin:left center;transform:scaleX(0);animation:hcGrow 6s infinite}
+#hcsl .hc-d1{animation-name:hcGrow1}#hcsl .hc-d2{animation-name:hcGrow2}
+@keyframes hcGrow{0%{transform:scaleX(0)}20%,85%{transform:scaleX(1)}95%,100%{transform:scaleX(0)}}
+@keyframes hcGrow1{0%,22%{transform:scaleX(0)}42%,85%{transform:scaleX(1)}95%,100%{transform:scaleX(0)}}
+@keyframes hcGrow2{0%,44%{transform:scaleX(0)}64%,85%{transform:scaleX(1)}95%,100%{transform:scaleX(0)}}
+#hcsl .hc-step10{animation:hcStep10 5s steps(10,jump-none) infinite}
+@keyframes hcStep10{from{transform:translateX(0)}to{transform:translateX(180px)}}
+#hcsl .hc-step6{animation:hcStep6 2.4s steps(6,jump-none) infinite}
+@keyframes hcStep6{from{transform:translateX(0)}to{transform:translateX(166.67px)}}
+#hcsl .hc-seg{opacity:0;animation:hcSeg 6s infinite}#hcsl .hc-s1{animation-delay:1.5s}#hcsl .hc-s2{animation-delay:3s}
+@keyframes hcSeg{0%{opacity:0}5%,22%{opacity:.85}27%,100%{opacity:0}}
+#hcsl .hc-pop{opacity:0;animation:hcPop 6s infinite}
+@keyframes hcPop{0%,72%{opacity:0}76%,92%{opacity:1}96%,100%{opacity:0}}
+#hcsl .hc-combo{transform-origin:center bottom;transform:scaleY(0);animation:hcCombo 6s infinite}
+#hcsl .hc-c1{animation-delay:.4s}#hcsl .hc-c2{animation-delay:.8s}#hcsl .hc-c3{animation-delay:1.2s}#hcsl .hc-c4{animation-delay:1.6s}
+@keyframes hcCombo{0%{transform:scaleY(0);opacity:1}8%,55%{transform:scaleY(1);opacity:1}62%,100%{transform:scaleY(.15);opacity:.25}}
+#hcsl .hc-comboTxt{animation:hcTxtA 6s infinite}#hcsl .hc-collapseTxt{opacity:0;animation:hcTxtB 6s infinite}
+@keyframes hcTxtA{0%,58%{opacity:1}62%,100%{opacity:0}}@keyframes hcTxtB{0%,60%{opacity:0}64%,96%{opacity:1}100%{opacity:0}}
+#hcsl .hc-fast{transform-origin:left center;animation:hcFast 2.2s cubic-bezier(.6,0,.4,1) infinite}
+@keyframes hcFast{0%{transform:scaleX(0)}70%,88%{transform:scaleX(1)}100%{transform:scaleX(0)}}
+#hcsl .hc-draw{stroke-dasharray:100;stroke-dashoffset:100;animation:hcDraw 5s infinite}
+@keyframes hcDraw{0%{stroke-dashoffset:100}60%,88%{stroke-dashoffset:0}100%{stroke-dashoffset:100}}
+#hcsl .hc-hit{opacity:0;transform-origin:center;animation:hcHit 5s infinite}
+@keyframes hcHit{0%,58%{opacity:0;transform:scale(.3)}64%,88%{opacity:1;transform:scale(1)}100%{opacity:0}}
+#hcsl .hc-ov{opacity:0;animation:hcSeg 4.5s infinite}#hcsl .hc-o1{animation-delay:1.2s}#hcsl .hc-o2{animation-delay:2.4s}
+#hcsl .hc-flick{opacity:0;animation:hcFlick 3.3s infinite}#hcsl .hc-f1{animation-delay:1.1s}#hcsl .hc-f2{animation-delay:2.2s}
+@keyframes hcFlick{0%{opacity:0}6%,26%{opacity:1}32%,100%{opacity:0}}
+#hcsl .hc-glow{animation:hcGlow 2.4s ease-in-out infinite}
+@keyframes hcGlow{0%,100%{opacity:.45}50%{opacity:1}}
+#hcsl .hc-swapA{animation:hcTxtA2 5s infinite}#hcsl .hc-swapB{opacity:0;animation:hcTxtB2 5s infinite}
+@keyframes hcTxtA2{0%,40%{opacity:1}45%,95%{opacity:0}100%{opacity:1}}@keyframes hcTxtB2{0%,42%{opacity:0}47%,93%{opacity:1}98%,100%{opacity:0}}
+#hcsl .hc-pip{animation:hcPip 5s infinite}
+@keyframes hcPip{0%,42%{opacity:1}47%,95%{opacity:.12}100%{opacity:1}}
+#hcsl .hc-ball{opacity:0;animation:hcBall 4.8s infinite}
+#hcsl .hc-b1{animation-delay:.6s}#hcsl .hc-b2{animation-delay:1.2s}#hcsl .hc-b3{animation-delay:1.8s}#hcsl .hc-b4{animation-delay:2.4s}#hcsl .hc-b5{animation-delay:3s}
+@keyframes hcBall{0%{opacity:0}4%,30%{opacity:.9}36%,100%{opacity:.15}}
+#hcsl .hc-mL{animation:hcML 5s infinite}#hcsl .hc-mR{animation:hcMR 5s infinite}#hcsl .hc-mC{animation:hcMC 5s infinite}#hcsl .hc-mOne{opacity:0;animation:hcOne 5s infinite}
+@keyframes hcML{0%,25%{transform:translateX(0);opacity:1}50%{transform:translateX(60px);opacity:1}55%,95%{opacity:0}100%{opacity:1;transform:translateX(0)}}
+@keyframes hcMR{0%,25%{transform:translateX(0);opacity:1}50%{transform:translateX(-60px);opacity:1}55%,95%{opacity:0}100%{opacity:1;transform:translateX(0)}}
+@keyframes hcMC{0%,48%{opacity:1}55%,95%{opacity:0}100%{opacity:1}}
+@keyframes hcOne{0%,50%{opacity:0}56%,92%{opacity:1}97%,100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){#hcsl *{animation:none!important}#hcsl .hc-grow,#hcsl .hc-combo,#hcsl .hc-fast{transform:none}#hcsl .hc-fr0,#hcsl .hc-seg,#hcsl .hc-ball,#hcsl .hc-hit,#hcsl .hc-ov{opacity:1}#hcsl .hc-draw{stroke-dashoffset:0}#hcsl .hc-dotA,#hcsl .hc-dotB{display:none}}
+</style>
+  <header class="grid gap-y-10 md:grid-cols-12 md:gap-x-10">
+    <div class="md:col-span-6">
+      <p class="label">Hand Cricket Strategic League · grades 9–10</p>
+      <h2 class="mt-6 font-serif text-[length:clamp(2.9rem,12.5vw,13rem)] font-bold leading-[0.84] tracking-tighter">HCSL</h2>
+      <p class="mt-8 max-w-xl text-base leading-[1.75] text-bone/70 md:text-[1.05rem]">Hand cricket is played with fingers. Batter and bowler each show a number at the same time. Different numbers, the batter scores theirs. Same number, the batter is out.</p>
+      <p class="mt-5 max-w-xl text-base leading-[1.75] text-bone/70 md:text-[1.05rem]">HCSL is the rulebook I co-founded to turn that into a league: 13 formats plus a fusion mode, each built around a different decision. When to attack, when to stop, when to gamble. We tried to run it as a paid tournament at school in grades 9–10. It didn't last: parents worried it would get in the way of studies, and people who signed up didn't show. The question underneath it, whether a decision was good regardless of how it turned out, is where <a href="#proj-dtm" class="link-line text-bronze">DTM</a> started.</p>
+    </div>
+    <div class="md:col-span-4 md:col-start-9 md:self-end">
+      <div class="hc-hero"><svg viewBox="0 0 240 110" width="100%" height="100%" aria-hidden="true"><circle cx="62" cy="50" r="26" fill="none" stroke="#3a332b" stroke-width="1.5"/><circle cx="178" cy="50" r="26" fill="none" stroke="#3a332b" stroke-width="1.5"/><text x="62" y="94" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#8a8378">BAT</text><text x="178" y="94" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#8a8378">BOWL</text><g class="hc-fr hc-fr0"><text x="62" y="60" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="28" font-weight="600" fill="#f3f0ea">4</text><text x="178" y="60" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="28" font-weight="600" fill="#f3f0ea">2</text><text x="120" y="58" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="13" font-weight="700" fill="#c9a875">+4</text></g><g class="hc-fr hc-fr1"><text x="62" y="60" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="28" font-weight="600" fill="#f3f0ea">6</text><text x="178" y="60" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="28" font-weight="600" fill="#f3f0ea">1</text><text x="120" y="58" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="13" font-weight="700" fill="#c9a875">+6</text></g><g class="hc-fr hc-fr2"><text x="62" y="60" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="28" font-weight="700" fill="#c9a875">3</text><text x="178" y="60" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="28" font-weight="700" fill="#c9a875">3</text><text x="120" y="58" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="13" font-weight="700" fill="#ff6b5e">OUT</text></g></svg></div>
+      <p class="label mt-4">How a ball works</p>
+    </div>
+  </header>
+
+  <div class="hc-grid mt-16 md:mt-24">
+    <article class="hc-card">
+      <div class="hc-art"><svg viewBox="0 0 240 110" width="100%" height="100%" aria-hidden="true"><text x="14" y="30" text-anchor="start" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#8a8378">INN 1</text><rect x="56" y="22" width="150" height="10" fill="#3a332b"/><rect class="hc-grow hc-d0" x="56" y="22" width="96" height="10" fill="#c9a875"/><text x="14" y="54" text-anchor="start" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#8a8378">INN 2</text><rect x="56" y="46" width="150" height="10" fill="#3a332b"/><rect class="hc-grow hc-d1" x="56" y="46" width="70" height="10" fill="#c9a875" fill-opacity=".7"/><text x="14" y="86" text-anchor="start" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#f3f0ea">TOTAL</text><rect x="56" y="76" width="166" height="12" fill="#3a332b"/><rect class="hc-grow hc-d2" x="56" y="76" width="166" height="12" fill="#f3f0ea" fill-opacity=".85"/></svg></div>
+      <div class="hc-body">
+        <p class="hc-num">01</p>
+        <h3 class="hc-name">Test</h3>
+        <p class="hc-one">Two innings each, 10 wickets an innings, numbers 1–6. Highest total across both innings wins.</p>
+        <details class="hc-more"><summary>Full rules</summary><ul><li>2 innings per player</li><li>10 wickets per innings</li><li>Numbers allowed: 1–6</li><li>Highest aggregate score across both innings wins</li><li>You can attack in one innings and defend in the other</li><li>No score restrictions</li></ul><p class="hc-strat"><span>Strategy</span> Long-term consistency, recovery and handling pressure.</p></details>
+      </div>
+    </article>
+    <article class="hc-card">
+      <div class="hc-art"><svg viewBox="0 0 240 110" width="100%" height="100%" aria-hidden="true"><rect x="21.5" y="38" width="17.0" height="30" fill="none" stroke="#3a332b"/><text x="30.0" y="57" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="11" font-weight="500" fill="#8a8378">1</text><rect x="41.5" y="38" width="17.0" height="30" fill="none" stroke="#3a332b"/><text x="50.0" y="57" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="11" font-weight="500" fill="#8a8378">2</text><rect x="61.5" y="38" width="17.0" height="30" fill="none" stroke="#3a332b"/><text x="70.0" y="57" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="11" font-weight="500" fill="#8a8378">3</text><rect x="81.5" y="38" width="17.0" height="30" fill="none" stroke="#3a332b"/><text x="90.0" y="57" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="11" font-weight="500" fill="#8a8378">4</text><rect x="101.5" y="38" width="17.0" height="30" fill="none" stroke="#3a332b"/><text x="110.0" y="57" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="11" font-weight="500" fill="#8a8378">5</text><rect x="121.5" y="38" width="17.0" height="30" fill="none" stroke="#3a332b"/><text x="130.0" y="57" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="11" font-weight="500" fill="#8a8378">6</text><rect x="141.5" y="38" width="17.0" height="30" fill="none" stroke="#3a332b"/><text x="150.0" y="57" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="11" font-weight="500" fill="#8a8378">7</text><rect x="161.5" y="38" width="17.0" height="30" fill="none" stroke="#3a332b"/><text x="170.0" y="57" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="11" font-weight="500" fill="#8a8378">8</text><rect x="181.5" y="38" width="17.0" height="30" fill="none" stroke="#3a332b"/><text x="190.0" y="57" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="11" font-weight="500" fill="#8a8378">9</text><rect x="201.5" y="38" width="17.0" height="30" fill="none" stroke="#3a332b"/><text x="210.0" y="57" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="11" font-weight="500" fill="#8a8378">10</text><rect class="hc-step10" x="21.5" y="38" width="17.0" height="30" fill="#c9a875" fill-opacity=".38"/><text x="120" y="90" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#8a8378">numbers 1–10</text></svg></div>
+      <div class="hc-body">
+        <p class="hc-num">02</p>
+        <h3 class="hc-name">ODI</h3>
+        <p class="hc-one">One innings, 10 wickets, numbers 1–10. A bigger range means more runs, but wickets fall just as easily.</p>
+        <details class="hc-more"><summary>Full rules</summary><ul><li>1 innings per player</li><li>10 wickets</li><li>Numbers allowed: 1–10</li><li>Highest score wins</li><li>A larger number range increases scoring</li><li>Risk of losing wickets stays just as high</li></ul><p class="hc-strat"><span>Strategy</span> Balanced. Rewards controlled aggression.</p></details>
+      </div>
+    </article>
+    <article class="hc-card">
+      <div class="hc-art"><svg viewBox="0 0 240 110" width="100%" height="100%" aria-hidden="true"><rect x="21.5" y="38" width="30.3" height="30" fill="none" stroke="#3a332b"/><text x="36.66666666666667" y="57" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="11" font-weight="500" fill="#8a8378">1</text><rect x="54.8" y="38" width="30.3" height="30" fill="none" stroke="#3a332b"/><text x="70.0" y="57" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="11" font-weight="500" fill="#8a8378">2</text><rect x="88.2" y="38" width="30.3" height="30" fill="none" stroke="#3a332b"/><text x="103.33333333333334" y="57" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="11" font-weight="500" fill="#8a8378">3</text><rect x="121.5" y="38" width="30.3" height="30" fill="none" stroke="#3a332b"/><text x="136.66666666666666" y="57" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="11" font-weight="500" fill="#8a8378">4</text><rect x="154.8" y="38" width="30.3" height="30" fill="none" stroke="#3a332b"/><text x="170.0" y="57" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="11" font-weight="500" fill="#8a8378">5</text><rect x="188.2" y="38" width="30.3" height="30" fill="none" stroke="#3a332b"/><text x="203.33333333333334" y="57" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="11" font-weight="500" fill="#8a8378">6</text><rect class="hc-step6" x="21.5" y="38" width="30.3" height="30" fill="#c9a875" fill-opacity=".38"/><text x="120" y="90" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#8a8378">numbers 1–6</text></svg></div>
+      <div class="hc-body">
+        <p class="hc-num">03</p>
+        <h3 class="hc-name">T20</h3>
+        <p class="hc-one">One innings, 10 wickets, numbers 1–6. A smaller range means you have to score faster.</p>
+        <details class="hc-more"><summary>Full rules</summary><ul><li>1 innings per player</li><li>10 wickets</li><li>Numbers allowed: 1–6</li><li>Highest score wins</li><li>Faster scoring needed because of the smaller range</li></ul><p class="hc-strat"><span>Strategy</span> Attacking play and momentum.</p></details>
+      </div>
+    </article>
+    <article class="hc-card">
+      <div class="hc-art"><svg viewBox="0 0 240 110" width="100%" height="100%" aria-hidden="true"><rect x="21" y="40" width="58" height="22" fill="#3a332b"/><rect class="hc-seg hc-s0" x="21" y="40" width="58" height="22" fill="#c9a875"/><text x="50.0" y="55" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="10" font-weight="600" fill="#f3f0ea">×2</text><rect x="81" y="40" width="78" height="22" fill="#3a332b"/><rect class="hc-seg hc-s1" x="81" y="40" width="78" height="22" fill="#c9a875"/><text x="120.0" y="55" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="10" font-weight="600" fill="#f3f0ea">×1</text><rect x="161" y="40" width="58" height="22" fill="#3a332b"/><rect class="hc-seg hc-s2" x="161" y="40" width="58" height="22" fill="#c9a875"/><text x="190.0" y="55" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="10" font-weight="600" fill="#f3f0ea">×3</text><text x="50" y="80" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="7" font-weight="500" fill="#8a8378">3 wkts</text><text x="120" y="80" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="7" font-weight="500" fill="#8a8378">4 wkts</text><text x="190" y="80" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="7" font-weight="500" fill="#8a8378">3 wkts</text><g class="hc-pop"><text x="210" y="28" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="13" font-weight="700" fill="#c9a875">×5</text><text x="210" y="96" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="7" font-weight="500" fill="#c9a875">sudden death</text></g></svg></div>
+      <div class="hc-body">
+        <p class="hc-num">04</p>
+        <h3 class="hc-name">LOPP</h3><p class="hc-full">League of Power Plays</p>
+        <p class="hc-one">The innings is split into three phases: runs doubled, then normal, then tripled, with a sudden-death option on the last wicket.</p>
+        <details class="hc-more"><summary>Full rules</summary><ul><li>Phase 1 (first 3 wickets): every run doubled, each wicket −10 runs, and you can end the phase early</li><li>Phase 2 (next 4 wickets): runs count normally; above 300 you can extend by 1 wicket, but losing it costs 15 runs</li><li>Phase 3 (final 3 wickets): every run tripled, each wicket −15 runs</li><li>Sudden Death (last wicket, optional): every run ×5, but losing the wicket wipes out all Sudden Death runs</li></ul><p class="hc-strat"><span>Strategy</span> High risk, high reward. It is all about when to attack.</p></details>
+      </div>
+    </article>
+    <article class="hc-card">
+      <div class="hc-art"><svg viewBox="0 0 240 110" width="100%" height="100%" aria-hidden="true"><rect class="hc-combo hc-c0" x="40" y="64" width="20" height="18" fill="#c9a875"/><rect class="hc-combo hc-c1" x="70" y="56" width="20" height="26" fill="#c9a875"/><rect class="hc-combo hc-c2" x="100" y="48" width="20" height="34" fill="#c9a875"/><rect class="hc-combo hc-c3" x="130" y="38" width="20" height="44" fill="#c9a875"/><rect class="hc-combo hc-c4" x="160" y="26" width="20" height="56" fill="#c9a875"/><line x1="30" y1="82" x2="200" y2="82" stroke="#3a332b"/><g class="hc-comboTxt"><text x="120" y="98" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#c9a875">combo multiplier</text></g><g class="hc-collapseTxt"><text x="120" y="98" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#f3f0ea">collapse penalty</text></g></svg></div>
+      <div class="hc-body">
+        <p class="hc-num">05</p>
+        <h3 class="hc-name">LOCB</h3>
+        <p class="hc-one">Standard innings, but scoring overs in a row build a combo multiplier, and losing wickets in a row triggers a collapse penalty.</p>
+        <details class="hc-more"><summary>Full rules</summary><ul><li>Standard innings structure</li><li>Consecutive overs above the scoring threshold activate combo multipliers</li><li>Consecutive wicket losses trigger collapse penalties</li></ul><p class="hc-strat"><span>Strategy</span> Keep the momentum going without collapsing.</p></details>
+      </div>
+    </article>
+    <article class="hc-card">
+      <div class="hc-art"><svg viewBox="0 0 240 110" width="100%" height="100%" aria-hidden="true"><rect x="20" y="46" width="200" height="14" fill="#3a332b"/><rect class="hc-fast" x="20" y="46" width="200" height="14" fill="#c9a875"/><text x="20" y="36" text-anchor="start" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#8a8378">ultra-short innings</text><text x="220" y="80" text-anchor="end" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#8a8378">no time to recover</text></svg></div>
+      <div class="hc-body">
+        <p class="hc-num">06</p>
+        <h3 class="hc-name">The Hundred</h3>
+        <p class="hc-one">An ultra-short innings with limited balls and numbers 1–6. Very little time to recover after a wicket.</p>
+        <details class="hc-more"><summary>Full rules</summary><ul><li>Ultra-short innings</li><li>Limited overs/balls</li><li>Numbers allowed: 1–6</li><li>Faster innings progression</li><li>Fewer chances to recover after losing wickets</li></ul><p class="hc-strat"><span>Strategy</span> Efficiency and scoring straight away.</p></details>
+      </div>
+    </article>
+    <article class="hc-card">
+      <div class="hc-art"><svg viewBox="0 0 240 110" width="100%" height="100%" aria-hidden="true"><line x1="20" y1="28" x2="220" y2="28" stroke="#c9a875" stroke-dasharray="4 4"/><text x="220" y="22" text-anchor="end" font-family="DM Mono,ui-monospace,monospace" font-size="7" font-weight="500" fill="#c9a875">TARGET</text><polyline class="hc-draw" pathLength="100" points="20,92 50,84 80,76 105,70 130,58 160,50 185,40 205,30" fill="none" stroke="#f3f0ea" stroke-width="2"/><circle class="hc-hit" cx="205" cy="29" r="5" fill="#c9a875"/><text x="24" y="104" text-anchor="start" font-family="DM Mono,ui-monospace,monospace" font-size="7" font-weight="500" fill="#8a8378">pace the chase</text></svg></div>
+      <div class="hc-body">
+        <p class="hc-num">07</p>
+        <h3 class="hc-name">LOSC</h3><p class="hc-full">League of Strategic Chases</p>
+        <p class="hc-one">Every innings is a chase of a set target. Bonus points for winning with wickets left, penalties for scoring too slowly.</p>
+        <details class="hc-more"><summary>Full rules</summary><ul><li>Chase-oriented format</li><li>Players chase predetermined targets</li><li>Bonus points for a successful chase with wickets remaining</li><li>Penalties for slow scoring during the chase</li></ul><p class="hc-strat"><span>Strategy</span> Pacing and managing the chase.</p></details>
+      </div>
+    </article>
+    <article class="hc-card">
+      <div class="hc-art"><svg viewBox="0 0 240 110" width="100%" height="100%" aria-hidden="true"><rect x="30" y="36" width="54" height="34" fill="none" stroke="#3a332b"/><rect class="hc-ov hc-o0" x="30" y="36" width="54" height="34" fill="#c9a875"/><text x="57" y="58" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#f3f0ea">OVER 1</text><rect x="92" y="36" width="54" height="34" fill="none" stroke="#3a332b"/><rect class="hc-ov hc-o1" x="92" y="36" width="54" height="34" fill="#c9a875"/><text x="119" y="58" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#f3f0ea">OVER 2</text><rect x="154" y="36" width="54" height="34" fill="none" stroke="#3a332b"/><rect class="hc-ov hc-o2" x="154" y="36" width="54" height="34" fill="#c9a875"/><text x="181" y="58" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#f3f0ea">OVER 3</text><text x="120" y="92" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#8a8378">3 overs · numbers 1–10</text></svg></div>
+      <div class="hc-body">
+        <p class="hc-num">08</p>
+        <h3 class="hc-name">T03</h3>
+        <p class="hc-one">A 3-over innings with numbers 1–10. Every over matters and there is almost no room to recover.</p>
+        <details class="hc-more"><summary>Full rules</summary><ul><li>3-over innings</li><li>Numbers allowed: 1–10</li><li>Highest score wins</li><li>Very limited chances to recover</li><li>Every over carries high importance</li></ul><p class="hc-strat"><span>Strategy</span> Rewards explosive starts.</p></details>
+      </div>
+    </article>
+    <article class="hc-card">
+      <div class="hc-art"><svg viewBox="0 0 240 110" width="100%" height="100%" aria-hidden="true"><polyline class="hc-draw" pathLength="100" points="20,70 40,62 55,74 70,40 85,58 100,52 115,80 130,44 150,60 165,30 185,66 205,48 220,54" fill="none" stroke="#c9a875" stroke-width="1.8"/><g class="hc-flick hc-f0"><text x="70" y="30" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#f3f0ea">+boost</text></g><g class="hc-flick hc-f1"><text x="118" y="98" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#f3f0ea">−wicket</text></g><g class="hc-flick hc-f2"><text x="168" y="20" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#f3f0ea">×temp</text></g></svg></div>
+      <div class="hc-body">
+        <p class="hc-num">09</p>
+        <h3 class="hc-name">VITC</h3>
+        <p class="hc-one">A volatile format: random momentum shifts can switch on score boosts, wicket penalties or temporary multipliers.</p>
+        <details class="hc-more"><summary>Full rules</summary><ul><li>Volatility-based format with scoring modifiers</li><li>Random momentum shifts may activate score boosts, wicket penalties or temporary multipliers</li></ul><p class="hc-strat"><span>Strategy</span> Adapting when the conditions keep changing.</p></details>
+      </div>
+    </article>
+    <article class="hc-card">
+      <div class="hc-art"><svg viewBox="0 0 240 110" width="100%" height="100%" aria-hidden="true"><path d="M20 60 H110" stroke="#3a332b" stroke-width="2" fill="none"/><path d="M110 60 L170 30 H220" stroke="#3a332b" stroke-width="2" fill="none"/><path d="M110 60 L170 90 H220" stroke="#3a332b" stroke-width="2" fill="none"/><circle cx="110" cy="60" r="4" fill="#f3f0ea"/><text x="110" y="78" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="7" font-weight="500" fill="#8a8378">5 wkts</text><text x="220" y="22" text-anchor="end" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#c9a875">STOP +10</text><text x="220" y="104" text-anchor="end" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#c9a875">CONTINUE +5/wkt</text><circle class="hc-dotA" r="4" fill="#c9a875"><animateMotion dur="5s" repeatCount="indefinite" path="M20 60 H110 L170 30 H220"/></circle><circle class="hc-dotB" r="4" fill="#f3f0ea"><animateMotion dur="5s" begin="2.5s" repeatCount="indefinite" path="M20 60 H110 L170 90 H220"/></circle></svg></div>
+      <div class="hc-body">
+        <p class="hc-num">10</p>
+        <h3 class="hc-name">EHC</h3><p class="hc-full">Enhanced Halfway Challenge</p>
+        <p class="hc-one">At 5 wickets down you choose: stop now for a bonus, or keep batting with bonuses and penalties riding on it.</p>
+        <details class="hc-more"><summary>Full rules</summary><ul><li>At the halfway point (5 wickets) you choose to stop or continue</li><li>Stopping straight away: +10 bonus runs</li><li>Continuing: +5 runs for every wicket preserved</li><li>Losing all remaining wickets within the next 3 overs: −20 runs</li><li>30+ runs in each of the next 2 overs while losing at most 1 wicket: all runs in those overs ×2</li><li>Losing exactly 2 wickets in the next over: you may reset to your halfway score +15, and the innings ends</li></ul><p class="hc-strat"><span>Strategy</span> One of the most strategic formats. It is entirely about managing risk.</p></details>
+      </div>
+    </article>
+    <article class="hc-card">
+      <div class="hc-art"><svg viewBox="0 0 240 110" width="100%" height="100%" aria-hidden="true"><rect x="22" y="44" width="16" height="20" fill="#3a332b" class=""/><rect x="42" y="44" width="16" height="20" fill="#3a332b" class=""/><rect x="62" y="44" width="16" height="20" fill="#3a332b" class=""/><rect x="82" y="44" width="16" height="20" fill="#3a332b" class=""/><rect x="102" y="44" width="16" height="20" fill="#3a332b" class=""/><rect x="122" y="44" width="16" height="20" fill="#3a332b" class=""/><rect x="142" y="44" width="16" height="20" fill="#3a332b" class=""/><rect x="162" y="44" width="16" height="20" fill="#c9a875" class="hc-glow"/><rect x="182" y="44" width="16" height="20" fill="#c9a875" class="hc-glow"/><rect x="202" y="44" width="16" height="20" fill="#c9a875" class="hc-glow"/><text x="70" y="82" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="7" font-weight="500" fill="#8a8378">early overs</text><text x="190" y="82" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#c9a875">final phase ×</text><text x="190" y="32" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="7" font-weight="500" fill="#f3f0ea">bigger wicket penalty</text></svg></div>
+      <div class="hc-body">
+        <p class="hc-num">11</p>
+        <h3 class="hc-name">LOPC</h3>
+        <p class="hc-one">Built around the end of the innings: the final overs carry score multipliers, and wickets lost there cost more.</p>
+        <details class="hc-more"><summary>Full rules</summary><ul><li>Clutch-focused late-innings format</li><li>Final overs carry score multipliers</li><li>Wickets lost in the final phase carry stronger penalties</li></ul><p class="hc-strat"><span>Strategy</span> Handling pressure and endgame decisions.</p></details>
+      </div>
+    </article>
+    <article class="hc-card">
+      <div class="hc-art"><svg viewBox="0 0 240 110" width="100%" height="100%" aria-hidden="true"><g class="hc-swapA"><text x="70" y="62" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="24" font-weight="600" fill="#f3f0ea">120</text></g><g class="hc-swapB"><text x="70" y="62" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="24" font-weight="700" fill="#c9a875">240</text><text x="70" y="80" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="9" font-weight="500" fill="#c9a875">×2</text></g><circle class="" cx="150" cy="54" r="5" fill="#f3f0ea"/><circle class="" cx="166" cy="54" r="5" fill="#f3f0ea"/><circle class="hc-pip" cx="182" cy="54" r="5" fill="#f3f0ea"/><circle class="hc-pip" cx="198" cy="54" r="5" fill="#f3f0ea"/><circle class="hc-pip" cx="214" cy="54" r="5" fill="#f3f0ea"/><text x="182" y="80" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="7" font-weight="500" fill="#8a8378">wickets left</text><text x="120" y="100" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="7" font-weight="500" fill="#8a8378">turnaround after 5 down</text></svg></div>
+      <div class="hc-body">
+        <p class="hc-num">12</p>
+        <h3 class="hc-name">TTC</h3><p class="hc-full">Turnaround Tactical Cricket</p>
+        <p class="hc-one">After losing 5 wickets you can trigger a Turnaround: your score doubles, but you are down to 2 wickets.</p>
+        <details class="hc-more"><summary>Full rules</summary><ul><li>After losing 5 wickets you may activate Turnaround</li><li>Turnaround: current score ×2, remaining wickets drop to 2</li><li>Scoring 50+ after the Turnaround: +10 bonus runs</li><li>Failing to score 50 before being all out: −10 runs</li></ul><p class="hc-strat"><span>Strategy</span> Comebacks and high-risk recovery.</p></details>
+      </div>
+    </article>
+    <article class="hc-card">
+      <div class="hc-art"><svg viewBox="0 0 240 110" width="100%" height="100%" aria-hidden="true"><circle cx="45" cy="54" r="10" fill="none" stroke="#3a332b" stroke-width="1.5"/><circle class="hc-ball hc-b0" cx="45" cy="54" r="10" fill="#c9a875"/><circle cx="75" cy="54" r="10" fill="none" stroke="#3a332b" stroke-width="1.5"/><circle class="hc-ball hc-b1" cx="75" cy="54" r="10" fill="#c9a875"/><circle cx="105" cy="54" r="10" fill="none" stroke="#3a332b" stroke-width="1.5"/><circle class="hc-ball hc-b2" cx="105" cy="54" r="10" fill="#c9a875"/><circle cx="135" cy="54" r="10" fill="none" stroke="#3a332b" stroke-width="1.5"/><circle class="hc-ball hc-b3" cx="135" cy="54" r="10" fill="#c9a875"/><circle cx="165" cy="54" r="10" fill="none" stroke="#3a332b" stroke-width="1.5"/><circle class="hc-ball hc-b4" cx="165" cy="54" r="10" fill="#c9a875"/><circle cx="195" cy="54" r="10" fill="none" stroke="#3a332b" stroke-width="1.5"/><circle class="hc-ball hc-b5" cx="195" cy="54" r="10" fill="#c9a875"/><text x="120" y="92" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#8a8378">one over · every ball counts</text></svg></div>
+      <div class="hc-body">
+        <p class="hc-num">13</p>
+        <h3 class="hc-name">Super Over</h3>
+        <p class="hc-one">A one-over shootout. Most runs wins, and every ball counts.</p>
+        <details class="hc-more"><summary>Full rules</summary><ul><li>1-over shootout</li><li>Highest runs win</li><li>Almost no chance to recover</li><li>Every ball has a big impact</li></ul><p class="hc-strat"><span>Strategy</span> Pure pressure.</p></details>
+      </div>
+    </article>
+    <article class="hc-card">
+      <div class="hc-art"><svg viewBox="0 0 240 110" width="100%" height="100%" aria-hidden="true"><g class="hc-mL"><rect x="20" y="40" width="56" height="28" fill="#3a332b"/><text x="48" y="58" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#f3f0ea">TEST</text></g><g class="hc-mC"><rect x="92" y="40" width="56" height="28" fill="#3a332b"/><text x="120" y="58" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#f3f0ea">ODI</text></g><g class="hc-mR"><rect x="164" y="40" width="56" height="28" fill="#3a332b"/><text x="192" y="58" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="500" fill="#f3f0ea">T20</text></g><g class="hc-mOne"><rect x="40" y="40" width="160" height="28" fill="#c9a875"/><text x="120" y="58" text-anchor="middle" font-family="DM Mono,ui-monospace,monospace" font-size="8" font-weight="700" fill="#17120c">POINTS ACROSS ALL</text></g></svg></div>
+      <div class="hc-body">
+        <p class="hc-num">+</p>
+        <h3 class="hc-name">Format Fusion</h3>
+        <p class="hc-one">Not a 14th format, but a tournament that plays several formats back to back and adds up the points.</p>
+        <details class="hc-more"><summary>Full rules</summary><ul><li>Combines multiple formats in sequence</li><li>Examples: Test + ODI + T20; LOPP + LOCB + The Hundred; LOSC + T03 + VITC</li><li>Players collect points across every format included</li></ul><p class="hc-strat"><span>Strategy</span> Adapting across different playstyles and scoring systems.</p></details>
+      </div>
+    </article>
+  </div>
+
+  <div class="mt-16 grid gap-y-8 md:mt-20 md:grid-cols-12 md:gap-x-10">
+    <p class="label md:col-span-3">League rules</p>
+    <ul class="hc-rules md:col-span-6">
+      <li>Every match is officially recorded, and net run rate updates after each one.</li>
+      <li>Cheating: after 2 warnings, −150 runs or −7 wickets.</li>
+      <li>Top 2 players by points and net run rate reach the monthly final (winner 100 points, runner-up 20).</li>
+      <li>A yearly final decides the annual champion.</li>
+    </ul>
+  </div>
 </section>
 
 <!-- ============================ SCREENPLAYS ============================ -->
