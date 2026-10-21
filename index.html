@@ -104,7 +104,7 @@ html.intro-on,html.intro-on body{overflow:hidden}
 </style>
 <div id="intro" hidden aria-label="Intro reel">
   <video id="intro-v" src="/reel/circle.mp4" poster="/reel/circle-first.webp" muted playsinline preload="auto"></video>
-  <div class="in-bar"><button type="button" id="intro-snd" aria-pressed="false">Sound on</button><button type="button" id="intro-skip">Skip &rarr;</button></div>
+  <div class="in-bar"><button type="button" id="intro-skip" style="margin-left:auto">Skip &rarr;</button></div>
 </div>
 <script>
 (function(){
@@ -116,10 +116,8 @@ html.intro-on,html.intro-on body{overflow:hidden}
     if(window.__introDone) window.__introDone();
     setTimeout(function(){box.hidden=true;box.classList.remove('out');v.pause();},1150); }
   function open(fromClick){ done=false; box.hidden=false; root.classList.add('intro-on'); window.__introOn=true;
-    v.currentTime=0; if(fromClick){v.muted=false;sync()}
+    v.currentTime=0;
     var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){ if(!fromClick) close(); }); }
-  function sync(){ var b=document.getElementById('intro-snd'); b.textContent=v.muted?'Sound on':'Sound off'; b.setAttribute('aria-pressed',String(!v.muted)); }
-  document.getElementById('intro-snd').addEventListener('click',function(){ v.muted=!v.muted; if(!v.muted) v.currentTime=0; v.play(); sync(); });
   document.getElementById('intro-skip').addEventListener('click',close);
   v.addEventListener('ended',close);
   document.addEventListener('keydown',function(e){ if(!box.hidden && e.key==='Escape') close(); });
