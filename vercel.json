@@ -1,0 +1,5 @@
+{
+  "headers": [
+    { "source": "/media/medium/(.*)", "headers": [ { "key": "Access-Control-Allow-Origin", "value": "*" } ] }
+  ]
+}
