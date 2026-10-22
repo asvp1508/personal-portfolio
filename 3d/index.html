@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arjun Pathi — in 3D</title>
+<meta name="description" content="Three research projects by Arjun Pathi, built as one scene: film distortion, airfare monopolies and cricket pressure.">
+<meta property="og:title" content="Arjun Pathi — in 3D">
+<meta property="og:image" content="https://arjun-pathi-portfolio.vercel.app/og.jpg">
+<meta name="theme-color" content="#120e0b">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#120e0b;--paper:#f2ede2;--dim:rgba(242,237,226,.62);--acc:#e0573a;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--ink);color:var(--paper);font:400 17px/1.6 "Instrument Sans",system-ui,sans-serif}
+canvas#gl{position:fixed;inset:0;width:100vw;height:100vh;display:block;z-index:0}
+#shade{position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(18,14,11,.82) 0%,rgba(18,14,11,.55) 34%,rgba(18,14,11,0) 58%)}
+@media (max-width:700px){#shade{background:linear-gradient(0deg,rgba(18,14,11,.88) 0%,rgba(18,14,11,.5) 45%,rgba(18,14,11,0) 70%)}}
+main{position:relative;z-index:1}
+.ch{height:100vh;height:100svh;display:flex;align-items:center;padding:0 clamp(20px,6vw,96px);pointer-events:none}
+.ch .t{max-width:34rem;pointer-events:auto}
+.k{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);margin:0 0 1.4rem}
+.k b{color:var(--acc);font-weight:600}
+h1,h2{font-family:Newsreader,Georgia,serif;font-weight:500;line-height:.98;letter-spacing:-.02em;margin:0}
+h1{font-size:clamp(3rem,7.4vw,6.6rem)}
+h2{font-size:clamp(2.4rem,5.2vw,4.6rem)}
+h1 em,h2 em{font-style:italic;color:var(--acc)}
+.t p{color:var(--dim);font-size:1.05rem;margin:1.6rem 0 0;max-width:30rem}
+.t p strong{color:var(--paper);font-weight:500}
+.rule{width:64px;height:1px;background:var(--paper);margin:2rem 0 0}
+.links{display:flex;flex-wrap:wrap;gap:1.6rem;margin-top:2rem}
+.links a{color:var(--paper);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.3em;font-size:1.02rem}
+.links a:hover{color:var(--acc)}
+#hud{position:fixed;left:clamp(20px,6vw,96px);bottom:clamp(18px,4vh,40px);z-index:2;font:500 .85rem/1 "Instrument Sans",sans-serif;letter-spacing:.2em;color:var(--dim)}
+#hud b{color:var(--paper);font-weight:500}
+#side{position:fixed;right:clamp(20px,4vw,64px);bottom:clamp(18px,4vh,40px);z-index:2;border-left:1px solid rgba(242,237,226,.4);padding-left:14px;font:500 .74rem/1.9 "Instrument Sans",sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+#side span{display:block}#side span.on{color:var(--paper)}
+#back{position:fixed;top:clamp(16px,3vh,28px);left:clamp(20px,6vw,96px);z-index:2;color:var(--paper);font:500 .95rem/1 "Instrument Sans",sans-serif;text-decoration:underline;text-underline-offset:.3em}
+#back:hover{color:var(--acc)}
+#load{position:fixed;inset:0;z-index:5;background:var(--ink);display:flex;align-items:flex-end;padding:clamp(20px,6vw,96px);font-family:Newsreader,serif;font-size:1.4rem;color:var(--dim);transition:opacity .6s}
+#load.done{opacity:0;pointer-events:none}
+@media (max-width:700px){#side{display:none}.ch{align-items:flex-end;padding-bottom:16vh}.t p{font-size:.98rem}}
+</style>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+</head>
+<body>
+<canvas id="gl" aria-hidden="true"></canvas><div id="shade"></div>
+<div id="load">Setting the scene…</div>
+<a id="back" href="/">The full portfolio</a>
+<div id="hud"><b id="hn">01</b> / 05</div>
+<div id="side"><span>Intro</span><span>Films</span><span>Flights</span><span>Cricket</span><span>Name</span></div>
+<main>
+  <section class="ch"><div class="t">
+    <p class="k">Arjun Pathi · Atlanta</p>
+    <h1>Measuring what people judge <em>by feel.</em></h1>
+    <p>Three projects. Each one takes something people argue about on instinct (a film, a fare, a shot under pressure) and puts a number on it.</p>
+    <div class="rule"></div>
+  </div></section>
+  <section class="ch"><div class="t">
+    <p class="k"><b>01</b> · RPDI</p>
+    <h2>How far a film drifts from <em>the record.</em></h2>
+    <p>16 history films, scored claim by claim. Each frame stands further back the more its film distorts. <strong>RRR is furthest, at 0.796.</strong> All the President's Men is closest, at 0.096.</p>
+  </div></section>
+  <section class="ch"><div class="t">
+    <p class="k"><b>02</b> · ADMI</p>
+    <h2>What a flight costs when nobody else <em>flies it.</em></h2>
+    <p>Every nonstop route out of Atlanta. The higher the arc, the further the fare sits above a fair price for the distance. <strong>The 18 red routes stay expensive on every date.</strong> 17 of them are Delta only.</p>
+  </div></section>
+  <section class="ch"><div class="t">
+    <p class="k"><b>03</b> · DTM</p>
+    <h2>How good a decision is <em>under pressure.</em></h2>
+    <p>Every ball of a limited-overs innings carries a pressure weight: 1 in the first two overs, 5 in the last two. DTM scores the decision, not whether it came off.</p>
+  </div></section>
+  <section class="ch"><div class="t">
+    <p class="k">Filmmaker · Researcher · Cricketer · Builder</p>
+    <h1>Arjun <em>Pathi.</em></h1>
+    <p>Applying to study computer science and data science for 2027. The methods, the data and the writing behind all three projects are one click away.</p>
+    <div class="links"><a href="/">Read the full portfolio</a><a href="https://github.com/asvp1508" target="_blank" rel="noopener">GitHub</a><a href="https://medium.com/@pathiarjun15" target="_blank" rel="noopener">Medium</a></div>
+  </div></section>
+</main>
+
+<script type="module">
+import * as THREE from 'three';
+import { Sky } from './vendor/Sky.js';
+
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const mobile = matchMedia('(max-width:700px)').matches;
+const canvas = document.getElementById('gl');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(devicePixelRatio, mobile ? 1.5 : 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 0.36;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.FogExp2(0x2a1c15, 0.0105);
+const camera = new THREE.PerspectiveCamera(mobile ? 60 : 40, innerWidth / innerHeight, 0.1, 4000);
+
+/* ---------- sky at dusk; the sun just under the horizon to the left ---------- */
+const sky = new Sky(); sky.scale.setScalar(3000); scene.add(sky);
+const su = sky.material.uniforms;
+su.turbidity.value = 10; su.rayleigh.value = 3.2; su.mieCoefficient.value = 0.006; su.mieDirectionalG.value = 0.86;
+const sun = new THREE.Vector3().setFromSphericalCoords(1, THREE.MathUtils.degToRad(90.6), THREE.MathUtils.degToRad(196));
+su.sunPosition.value.copy(sun);
+const pm = new THREE.PMREMGenerator(renderer);
+const envScene = new THREE.Scene(); const sky2 = new Sky(); sky2.scale.setScalar(1000); envScene.add(sky2);
+Object.assign(sky2.material.uniforms.sunPosition.value, sun); ['turbidity','rayleigh','mieCoefficient','mieDirectionalG'].forEach(k => sky2.material.uniforms[k].value = su[k].value);
+scene.environment = pm.fromScene(envScene, 0.02).texture;
+
+const keyLight = new THREE.DirectionalLight(0xffb07a, 3.2); keyLight.position.copy(sun).multiplyScalar(100).add(new THREE.Vector3(0, 18, 0)); scene.add(keyLight);
+const rim = new THREE.DirectionalLight(0xffe2c4, 1.4); rim.position.set(40, 30, -120); scene.add(rim);
+scene.add(new THREE.HemisphereLight(0x8a94b0, 0x1c120c, 0.55));
+const fill = new THREE.DirectionalLight(0xffd2a8, 1.1); fill.position.set(-14, 9, -58); fill.target.position.set(0, 2, -80); scene.add(fill, fill.target);
+
+/* ---------- water: a dark mirror with moving ripples ---------- */
+function rippleNormal(n = 512) {
+  const c = document.createElement('canvas'); c.width = c.height = n; const g = c.getContext('2d'); const id = g.createImageData(n, n);
+  const h = (x, y) => { let v = 0; for (let i = 0; i < 6; i++) { const f = 2 + i * 3.1, a = i * 1.7; v += Math.sin((x * Math.cos(a) + y * Math.sin(a)) * f * Math.PI * 2 / n + i) / (i + 1); } return v; };
+  for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) { const dx = h(x + 1, y) - h(x - 1, y), dy = h(x, y + 1) - h(x, y - 1); const k = (y * n + x) * 4;
+    id.data[k] = 128 + dx * 40; id.data[k + 1] = 128 + dy * 40; id.data[k + 2] = 255; id.data[k + 3] = 255; }
+  g.putImageData(id, 0, 0); const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(60, 60); return t;
+}
+const waterN = rippleNormal();
+const water = new THREE.Mesh(new THREE.PlaneGeometry(3000, 3000), new THREE.MeshStandardMaterial({ color: 0x0c0a09, roughness: 0.06, metalness: 1, normalMap: waterN, normalScale: new THREE.Vector2(0.18, 0.18), envMapIntensity: 1.1 }));
+water.rotation.x = -Math.PI / 2; scene.add(water);
+
+/* ---------- the moon: your own photo, wrapped on the near face of a sphere ---------- */
+const moonTex = await new THREE.TextureLoader().loadAsync('./moon.webp'); moonTex.colorSpace = THREE.SRGBColorSpace;
+const mg = new THREE.SphereGeometry(1, 96, 64); { const p = mg.attributes.position, uv = mg.attributes.uv; for (let i = 0; i < p.count; i++) { uv.setXY(i, 0.5 + p.getX(i) * 0.5, 0.5 + p.getY(i) * 0.5); } }
+const moon = new THREE.Mesh(mg, new THREE.MeshBasicMaterial({ map: moonTex, color: 0xfff0e2, fog: false, toneMapped: false }));
+moon.scale.setScalar(70); moon.position.set(150, 92, -820); moon.lookAt(0, 0, 0); scene.add(moon);
+
+/* ---------- the hero object: a glass cricket ball ---------- */
+const ball = new THREE.Group(); scene.add(ball);
+const R = 1.0;
+ball.add(new THREE.Mesh(new THREE.SphereGeometry(R, 96, 64), new THREE.MeshPhysicalMaterial({ color: 0xffffff, transmission: 1, thickness: 1.6, roughness: 0.03, ior: 1.46, clearcoat: 1, clearcoatRoughness: 0.03, attenuationColor: new THREE.Color(0xffc49a), attenuationDistance: 3.2, envMapIntensity: 1.6, specularIntensity: 1 })));
+const seamMat = new THREE.MeshStandardMaterial({ color: 0xc8432a, roughness: 0.35, metalness: 0.1, emissive: 0x3a0a02 });
+for (const o of [-0.06, 0.06]) { const tor = new THREE.Mesh(new THREE.TorusGeometry(R * 1.004, 0.016, 8, 160), seamMat); tor.position.z = o; ball.add(tor); }
+{ const st = new THREE.InstancedMesh(new THREE.BoxGeometry(0.012, 0.07, 0.04), seamMat, 2 * 64); const m = new THREE.Object3D(); let k = 0;
+  for (const o of [-0.12, 0.12]) for (let i = 0; i < 64; i++) { const a = i / 64 * Math.PI * 2; m.position.set(Math.cos(a) * R * 1.005, Math.sin(a) * R * 1.005, o); m.rotation.set(0, 0, a); m.rotation.x = o > 0 ? 0.5 : -0.5; m.updateMatrix(); st.setMatrixAt(k++, m.matrix); }
+  ball.add(st); }
+ball.rotation.set(0.5, 0.2, 0.35);
+
+/* ---------- text labels drawn with the page fonts ---------- */
+await document.fonts.load('500 64px Newsreader'); await document.fonts.load('500 32px "Instrument Sans"');
+function label(lines, w = 512, h = 160, align = 'left') {
+  const c = document.createElement('canvas'); c.width = w; c.height = h; const g = c.getContext('2d'); g.textAlign = align; const x = align === 'left' ? 8 : w / 2;
+  let y = 0; for (const [txt, font, col] of lines) { g.font = font; y += parseInt(font.match(/(\d+)px/)[1]) * 1.15; g.fillStyle = col; g.fillText(txt, x, y); }
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(w / 160, h / 160), new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false, fog: false, toneMapped: false })); return m;
+}
+const PAPER = '#f2ede2', DIMP = 'rgba(242,237,226,.7)', ACC = '#e0573a';
+const data = await (await fetch('./data.json')).json();
+
+/* ---------- 01 RPDI: 16 film frames standing in the water, pushed back by their score ---------- */
+const films = new THREE.Group(); films.position.set(0, 4.0, -24); scene.add(films);
+const sorted = data.films.slice().sort((a, b) => b.v - a.v);
+const FW = 2.7, FH = 1.66, frameGeo = new THREE.PlaneGeometry(FW, FH), edgeGeo = new THREE.EdgesGeometry(frameGeo);
+sorted.forEach((f, i) => {
+  const g = new THREE.Group(); const top = i === 0; const col = i % 4, row = Math.floor(i / 4);
+  const pane = new THREE.Mesh(frameGeo, new THREE.MeshStandardMaterial({ color: top ? 0x4a160b : 0x17110d, roughness: 0.35, metalness: 0.3, transparent: true, opacity: 0.86, envMapIntensity: 0.8, side: THREE.DoubleSide }));
+  const edge = new THREE.LineSegments(edgeGeo, new THREE.LineBasicMaterial({ color: top ? 0xe0573a : 0xf2ede2, transparent: true, opacity: top ? 1 : 0.55, fog: false }));
+  const lab = label([[f.t, '500 34px "Instrument Sans"', top ? '#ffd9cc' : PAPER], [f.v.toFixed(3), '500 64px Newsreader', top ? ACC : DIMP]], 440, 160, 'center');
+  lab.position.set(0, 0.02, 0.02); lab.scale.setScalar(0.92);
+  g.add(pane, edge, lab);
+  g.userData = { x: (col - 1.5) * (FW + 0.34), y: (1.5 - row) * (FH + 0.32), z: -f.v * 9, i };
+  films.add(g);
+});
+/* ---------- 02 ADMI: a globe rising out of the water, arcs out of Atlanta ---------- */
+const globe = new THREE.Group(); globe.position.set(0, 5, -50); scene.add(globe);
+const GR = 4.2;
+globe.add(new THREE.Mesh(new THREE.SphereGeometry(GR, 96, 64), new THREE.MeshPhysicalMaterial({ color: 0x15100d, roughness: 0.32, metalness: 0.35, clearcoat: 0.6, envMapIntensity: 0.9 })));
+{ const pts = []; const P = (la, lo, r = GR * 1.002) => { const a = THREE.MathUtils.degToRad(la), b = THREE.MathUtils.degToRad(lo); return new THREE.Vector3(r * Math.cos(a) * Math.sin(b), r * Math.sin(a), r * Math.cos(a) * Math.cos(b)); };
+  for (let lo = -180; lo < 180; lo += 15) for (let la = -80; la < 80; la += 4) pts.push(P(la, lo), P(la + 4, lo));
+  for (let la = -75; la <= 75; la += 15) for (let lo = -180; lo < 180; lo += 4) pts.push(P(la, lo), P(la, lo + 4));
+  globe.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: 0xf2ede2, transparent: true, opacity: 0.12, fog: false }))); }
+const ll = (la, lo, r = GR) => { const a = THREE.MathUtils.degToRad(la), b = THREE.MathUtils.degToRad(lo); return new THREE.Vector3(r * Math.cos(a) * Math.sin(b), r * Math.sin(a), r * Math.cos(a) * Math.cos(b)); };
+const atl = ll(data.atl.lat, data.atl.lon);
+// face Atlanta toward the camera, tilted so the US reads like a map
+globe.rotation.order = 'XYZ';
+globe.userData.ry = THREE.MathUtils.degToRad(97); globe.userData.rx = THREE.MathUtils.degToRad(36);
+const arcs = [];
+for (const r of data.routes) {
+  const b = ll(r.lat, r.lon); const mid = atl.clone().add(b).multiplyScalar(0.5); const chord = atl.distanceTo(b); const lift = (0.06 + chord * 0.32) * (0.35 + 1.7 * Math.max(0, r.admi));
+  mid.setLength(GR + lift);
+  const curve = new THREE.QuadraticBezierCurve3(atl.clone().multiplyScalar(1.003), mid, b.clone().multiplyScalar(1.003));
+  const geo = new THREE.TubeGeometry(curve, 48, r.s ? 0.028 : 0.014, 6, false);
+  const mat = new THREE.MeshBasicMaterial({ color: r.s ? 0xe0573a : 0xf2ede2, transparent: true, opacity: r.s ? 1 : (r.admi > 0 ? 0.55 : 0.22), fog: false, toneMapped: false });
+  const m = new THREE.Mesh(geo, mat); m.userData.n = geo.index.count; geo.setDrawRange(0, 0); globe.add(m); arcs.push(m);
+  const d = new THREE.Mesh(new THREE.SphereGeometry(r.s ? 0.06 : 0.04, 10, 8), mat); d.position.copy(b.clone().multiplyScalar(1.004)); globe.add(d); m.userData.dot = d;
+}
+{ const a = new THREE.Mesh(new THREE.SphereGeometry(0.11, 16, 12), new THREE.MeshBasicMaterial({ color: 0xe0573a, fog: false, toneMapped: false })); a.position.copy(atl.clone().multiplyScalar(1.01)); globe.add(a);
+  const l = label([['ATL', '600 40px "Instrument Sans"', ACC]], 200, 60); l.position.copy(atl.clone().multiplyScalar(1.02)).add(new THREE.Vector3(0.45, -0.25, 0)); l.scale.setScalar(0.7); globe.add(l); globe.userData.atlLabel = l; }
+
+/* ---------- 03 DTM: six basalt columns rise, one per pressure weight ---------- */
+const cols = new THREE.Group(); cols.position.set(0, 0, -80); scene.add(cols);
+const W = [1, 2, 2, 3, 4, 5], PH = ['Powerplay', 'Powerplay', 'Middle', 'Middle', 'Death', 'Final 2'];
+const rockMat = new THREE.MeshStandardMaterial({ color: 0x4a3a2e, roughness: 0.78, metalness: 0.05, flatShading: true, envMapIntensity: 0.7 });
+W.forEach((w, i) => {
+  const h = w * 0.95; const geo = new THREE.CylinderGeometry(0.55, 0.62, h, 6, 6); const p = geo.attributes.position;
+  for (let k = 0; k < p.count; k++) { const y = p.getY(k); const n = Math.sin(k * 12.9898 + i * 4.1) * 0.035; p.setXYZ(k, p.getX(k) * (1 + n), y, p.getZ(k) * (1 + n)); }
+  geo.computeVertexNormals(); geo.translate(0, h / 2, 0);
+  const g = new THREE.Group(); const m = new THREE.Mesh(geo, rockMat); g.add(m);
+  if (i === 5) { const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.565, 0.565, 0.05, 6), new THREE.MeshBasicMaterial({ color: 0xe0573a, toneMapped: false })); cap.position.y = h + 0.02; g.add(cap); }
+  const lab = label([[String(w), '500 72px Newsreader', i === 5 ? ACC : PAPER], [PH[i], '500 26px "Instrument Sans"', DIMP]], 300, 130, 'center');
+  lab.position.set(0, h + 0.85, 0); lab.scale.setScalar(0.95); g.add(lab);
+  g.userData = { x: (i - 2.5) * 1.6, h, lab }; cols.add(g);
+});
+
+/* ---------- camera and ball path, one key per chapter ---------- */
+const V = (x, y, z) => new THREE.Vector3(x, y, z);
+const CAM = [
+  { p: V(-0.4, 2.0, 7.4), t: V(0, 2.25, 0) },
+  { p: V(-4.2, 4.6, -6.0), t: V(0.3, 3.8, -27) },
+  { p: V(-3.6, 7.6, -30.5), t: V(0, 5.6, -50) },
+  { p: V(-7.4, 3.6, -67.5), t: V(0.6, 2.4, -80.5) },
+  { p: V(0, 2.2, -86), t: V(0, 2.4, -94) },
+];
+const BALL = [V(0, 2.25, 0), V(3.6, 7.6, -27), V(5.6, 9.2, -47), V(-5.6, 5.2, -78), V(0, 2.4, -94)];
+const ease = x => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const sm = (a, b, x) => { x = Math.min(1, Math.max(0, (x - a) / (b - a))); return x * x * (3 - 2 * x); };
+const lerpKey = (K, p) => { const i = Math.min(K.length - 2, Math.floor(p)); const f = ease(Math.min(1, p - i)); return [K[i], K[i + 1], f]; };
+
+let target = 0, prog = 0;
+const hn = document.getElementById('hn'), side = [...document.querySelectorAll('#side span')];
+function onScroll() { const max = document.documentElement.scrollHeight - innerHeight; target = max > 0 ? scrollY / max * 4 : 0; }
+addEventListener('scroll', onScroll, { passive: true }); onScroll();
+function fit() { renderer.setSize(innerWidth, innerHeight); camera.aspect = innerWidth / innerHeight; if (innerWidth > 700) camera.setViewOffset(innerWidth, innerHeight, -innerWidth * 0.2, 0, innerWidth, innerHeight); else camera.setViewOffset(innerWidth, innerHeight, 0, innerHeight * 0.22, innerWidth, innerHeight); camera.updateProjectionMatrix(); }
+fit(); addEventListener('resize', () => { fit(); onScroll(); });
+
+const clock = new THREE.Clock(); const look = new THREE.Vector3();
+function frame() {
+  const dt = Math.min(0.05, clock.getDelta()), time = clock.elapsedTime;
+  prog += (target - prog) * (reduce ? 1 : 1 - Math.exp(-dt * 4.5));
+  const p = prog;
+  // camera
+  { const [a, b, f] = lerpKey(CAM, p); camera.position.lerpVectors(a.p, b.p, f); look.lerpVectors(a.t, b.t, f);
+    if (!reduce) { camera.position.y += Math.sin(time * 0.6) * 0.06; camera.position.x += Math.sin(time * 0.4) * 0.05; }
+    camera.lookAt(look); }
+  // ball
+  { const [a, b, f] = lerpKey(BALL, p); ball.position.lerpVectors(a, b, f);
+    if (p > 2.6 && p < 3.4) { // bowled down the columns: a falling arc onto the last one
+      const u = sm(2.75, 3.25, p), last = cols.children[5]; const start = V(-5.6, 5.2, -78), end = V(cols.position.x + last.userData.x, last.userData.h + R + 0.05, cols.position.z);
+      ball.position.lerpVectors(start, end, u); ball.position.y += Math.sin(Math.PI * u) * 2.0; }
+    ball.position.y += reduce ? 0 : Math.sin(time * 0.9) * 0.08;
+    ball.rotation.y = 0.2 + p * 2.4 + (reduce ? 0 : time * 0.12); ball.rotation.x = 0.5 + p * 0.9; }
+  // RPDI frames rise out of the water, then drift back to their score
+  films.children.forEach(g => { const { x, y, z, i } = g.userData; const r = sm(0.3 + i * 0.02, 0.75 + i * 0.02, p), d = sm(0.7, 1.05, p), out = sm(1.45, 1.85, p);
+    g.position.set(x, y - (1 - r) * 9 - out * 10, z * d); g.visible = r > 0.001 && out < 0.999; });
+  // ADMI globe rises, turns to Atlanta, arcs draw
+  { const r = sm(1.25, 1.85, p), out = sm(2.55, 2.95, p); globe.position.y = -6 + r * 11 - out * 12; globe.visible = r > 0.001 && out < 0.999;
+    globe.rotation.y = globe.userData.ry + (1 - r) * 1.4 + (reduce ? 0 : Math.sin(time * 0.2) * 0.04); globe.rotation.x = globe.userData.rx;
+    const a = sm(1.7, 2.15, p); arcs.forEach((m, k) => { const kk = Math.min(1, Math.max(0, a * 1.4 - (k / arcs.length) * 0.4)); m.geometry.setDrawRange(0, Math.floor(m.userData.n * kk / 3) * 3); m.userData.dot.visible = kk > 0.98; });
+    globe.userData.atlLabel.quaternion.copy(camera.quaternion); }
+  // DTM columns rise one by one
+  cols.children.forEach((g, i) => { const r = sm(2.35 + i * 0.07, 2.75 + i * 0.07, p) - sm(3.55, 3.9, p); g.position.set(g.userData.x, -g.userData.h - 0.2 + r * (g.userData.h + 0.2), 0); g.visible = r > 0.001;
+    g.userData.lab.quaternion.copy(camera.quaternion); });
+  
+  // water drift
+  waterN.offset.x = time * 0.004; waterN.offset.y = time * 0.006;
+  // hud
+  const c = Math.min(4, Math.round(p)); hn.textContent = '0' + (c + 1); side.forEach((s, i) => s.classList.toggle('on', i === c));
+  renderer.render(scene, camera);
+  if (!reduce || Math.abs(target - prog) > 0.001) requestAnimationFrame(frame); else requestAnimationFrame(frame);
+}
+document.getElementById('load').classList.add('done');
+frame();
+window.__jump = v => { target = prog = v; };
+window.__ready = true;
+</script>
+</body>
+</html>
