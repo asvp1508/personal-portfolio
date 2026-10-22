@@ -320,6 +320,11 @@ async function loadAll(){S.store={};S.projects=DEF_PROJECTS.map(p=>({...p}));S.p
   S.projects=(pj.list&&pj.list.length)?pj.list:S.projects;
   for(const r of all){if(!r.pid)continue;(S.store[r.pid]=S.store[r.pid]||[]).push({...r,key:r.key.slice(r.pid.length+2)})}
   S.access=(await pr(tx('meta','readonly').get('access')))||'';
+  // bundled datasets are filled into their projects up front, so every project card shows its real counts
+  for(const p of S.projects){if(!p.seed)continue;const B=p.seed==='py'?window.ADMI_SEED_PY:window.ADMI_SEED;if(!B)continue;
+    const cur=S.store[p.id]=S.store[p.id]||[],have=new Set(cur.map(o=>o.key)),add=[];
+    for(const d of B.docs)for(const r of (d.rows||[]))if(!have.has(r.key)){have.add(r.key);add.push(r);cur.push(r)}
+    if(add.length){try{const st=DB.transaction('obs','readwrite').objectStore('obs');add.forEach(o=>st.put({...o,key:p.id+'::'+o.key,pid:p.id}))}catch(e){}}}
   await openProject(pj.current||S.projects[0].id,true)}
 
 /* ============================================================ fetching */
