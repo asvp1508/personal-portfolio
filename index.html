@@ -253,6 +253,176 @@ html.intro-on,html.intro-on body{overflow:hidden}
   </ul>
 </section>
 
+<!-- ============================ UNDER THE HOOD ============================ -->
+<style>
+#toolkit .tk-head{display:grid;gap:2.5rem;align-items:start}
+@media(min-width:1024px){#toolkit .tk-head{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:4rem}}
+#toolkit .tk-fig{border:1px solid #1c1a17;background:#f2ede2;position:relative}
+#toolkit .tk-fig canvas{display:block;width:100%;height:auto;aspect-ratio:16/11;cursor:grab;touch-action:pan-y}
+#toolkit .tk-fig canvas:active{cursor:grabbing}
+@media(max-width:600px){#toolkit .tk-fig canvas{aspect-ratio:1/1}#toolkit .tk-key{font-size:.7rem;gap:.7rem}}
+#toolkit .tk-cap{border-top:1px solid #1c1a17;padding:.8rem 1rem;font-size:.86rem;line-height:1.55;color:rgba(28,26,23,.75)}
+#toolkit .tk-cap b{color:#1c1a17;font-weight:600}
+#toolkit .tk-key{position:absolute;top:.8rem;left:1rem;display:flex;gap:1.1rem;font-size:.78rem;color:rgba(28,26,23,.75);pointer-events:none}
+#toolkit .tk-key i{display:inline-block;width:.6rem;height:.6rem;border-radius:50%;margin-right:.35rem;vertical-align:-.02rem}
+#toolkit .tk-cols{display:grid;margin-top:4.5rem;border-top:1px solid #1c1a17;border-left:1px solid #1c1a17}
+@media(min-width:768px){#toolkit .tk-cols{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1280px){#toolkit .tk-cols{grid-template-columns:repeat(4,minmax(0,1fr));padding-bottom:2.5rem;border-top:0;border-left:0}
+  #toolkit .tk-col{border-top:1px solid #1c1a17;border-left:1px solid #1c1a17;margin-left:-1px}
+  #toolkit .tk-col:nth-child(2n){transform:translateY(2.5rem)}}
+#toolkit .tk-col{border-right:1px solid #1c1a17;border-bottom:1px solid #1c1a17;padding:1.6rem 1.5rem 1.8rem;background:#f2ede2;min-width:0}
+#toolkit .tk-col svg{width:72px;height:72px;display:block}
+#toolkit .tk-col h3{font-family:Newsreader,Georgia,serif;font-size:1.65rem;font-weight:600;line-height:1.1;margin:1.1rem 0 .2rem;letter-spacing:-.01em}
+#toolkit .tk-col .tk-n{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:#c4391f}
+#toolkit .tk-col dl{margin:1.2rem 0 0;display:grid;gap:1rem}
+#toolkit .tk-col dt{font-weight:600;font-size:.95rem;color:#1c1a17}
+#toolkit .tk-col dd{margin:.15rem 0 0;font-size:.88rem;line-height:1.55;color:rgba(28,26,23,.72)}
+#toolkit .tk-note{margin-top:4.5rem;max-width:44rem;font-size:.95rem;line-height:1.65;color:rgba(28,26,23,.72)}
+/* icon motion */
+.tk-ie .tk-dot{offset-path:path('M10 36 H62');animation:tkRun 2.6s linear infinite}
+.tk-ie .tk-b{animation:tkTick 2.6s steps(1) infinite}
+.tk-ie .tk-b2{animation-delay:-1.73s}.tk-ie .tk-b3{animation-delay:-.87s}
+@keyframes tkRun{0%{offset-distance:0%}100%{offset-distance:100%}}
+@keyframes tkTick{0%,33%{fill:#c4391f}34%,100%{fill:#f2ede2}}
+.tk-ds .tk-fit{stroke-dasharray:70;stroke-dashoffset:70;animation:tkDraw 3.2s ease-out infinite}
+.tk-ds .tk-p{animation:tkPop 3.2s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes tkDraw{0%,20%{stroke-dashoffset:70}60%,100%{stroke-dashoffset:0}}
+@keyframes tkPop{0%{transform:scale(0)}15%,100%{transform:scale(1)}}
+.tk-ai .tk-e{stroke-dasharray:3 4;animation:tkFlow 1.4s linear infinite}
+.tk-ai .tk-o{animation:tkPulse 2.1s ease-in-out infinite}
+@keyframes tkFlow{to{stroke-dashoffset:-14}}
+@keyframes tkPulse{0%,100%{r:4}50%{r:6.5}}
+.tk-cs .tk-cur{animation:tkBlink 1s steps(1) infinite}
+.tk-cs .tk-l{stroke-dasharray:34;stroke-dashoffset:34;animation:tkType 3.6s steps(9) infinite}
+.tk-cs .tk-l2{animation-delay:.6s}.tk-cs .tk-l3{animation-delay:1.2s}
+@keyframes tkBlink{50%{opacity:0}}
+@keyframes tkType{0%{stroke-dashoffset:34}45%,100%{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){#toolkit svg *{animation:none!important}.tk-ds .tk-fit,.tk-cs .tk-l{stroke-dashoffset:0}}
+</style>
+<section id="toolkit" class="px-6 md:px-14 lg:px-20 mt-32 md:mt-52">
+  <div class="tk-head">
+    <div data-reveal>
+      <p class="label">Under the hood &middot; IE &middot; Data science &middot; AI &middot; CS</p>
+      <h2 class="mt-6 font-serif text-4xl font-semibold leading-[0.98] tracking-tight md:text-6xl">The methods behind the numbers.</h2>
+      <p class="mt-8 max-w-xl text-lg leading-[1.7] text-bone/70">Every project runs on the same four toolkits. Industrial engineering decides how a choice gets scored. Data science makes the numbers. AI helps where its work can be checked. Code collects it and shows it. Each term below points to where I actually used it.</p>
+    </div>
+    <figure class="tk-fig" data-reveal>
+      <div class="tk-key"><span><i style="background:#c4391f"></i>Structural route</span><span><i style="background:#8a4535"></i>1 airline</span><span><i style="background:#1c1a17"></i>2+ airlines</span></div>
+      <canvas id="tk-gl" width="1200" height="825" aria-label="3D scatter plot of 227 Atlanta airfares: distance, price per mile and number of airlines"></canvas>
+      <figcaption class="tk-cap"><b>Fig. 1</b> &mdash; all 227 Atlanta fares from the scripted ADMI collection, plotted live. Distance runs across, price per mile goes up, the number of airlines goes back. The red points are the 18 routes that stay overpriced on every date. Drag to turn it.</figcaption>
+    </figure>
+  </div>
+
+  <div class="tk-cols">
+    <article class="tk-col tk-ie" data-reveal>
+      <svg viewBox="0 0 72 72" aria-hidden="true" fill="none" stroke="#1c1a17" stroke-width="1.5"><path d="M10 36 H62" stroke-dasharray="2 3"/><rect class="tk-b" x="4" y="28" width="14" height="16" fill="#f2ede2"/><rect class="tk-b tk-b2" x="29" y="28" width="14" height="16" fill="#f2ede2"/><rect class="tk-b tk-b3" x="54" y="28" width="14" height="16" fill="#f2ede2"/><path d="M36 14 v8 M36 50 v8 M31 18 h10 M31 54 h10"/><circle class="tk-dot" r="2.6" fill="#c4391f" stroke="none"/></svg>
+      <p class="tk-n mt-4">01</p><h3>Industrial engineering</h3>
+      <dl>
+        <div><dt>Weighted decision scoring</dt><dd>DTM: D = &Sigma; w<sub>i</sub>(1 &minus; a<sub>i</sub>) / &Sigma; w<sub>i</sub>, with pressure as the weight.</dd></div>
+        <div><dt>Multi-criteria scoring</dt><dd>ADMI blends price, competition and route length at 0.5 / 0.3 / 0.2.</dd></div>
+        <div><dt>Sensitivity analysis</dt><dd>16 versions of the ADMI model. 12 routes come out structural in every one.</dd></div>
+        <div><dt>Sampling design</dt><dd>Fares searched 7, 17, 28, 45 and 70 days out, each on a different weekday.</dd></div>
+        <div><dt>Quality checks</dt><dd>A fare is only kept if adding a carry-on actually changes the price.</dd></div>
+      </dl>
+    </article>
+    <article class="tk-col tk-ds" data-reveal>
+      <svg viewBox="0 0 72 72" aria-hidden="true" fill="none" stroke="#1c1a17" stroke-width="1.5"><path d="M8 8 V64 H66"/><g fill="#1c1a17" stroke="none"><circle class="tk-p" cx="16" cy="54" r="2.4"/><circle class="tk-p" cx="24" cy="50" r="2.4" style="animation-delay:.1s"/><circle class="tk-p" cx="31" cy="44" r="2.4" style="animation-delay:.2s"/><circle class="tk-p" cx="40" cy="40" r="2.4" style="animation-delay:.3s"/><circle class="tk-p" cx="48" cy="31" r="2.4" style="animation-delay:.4s"/><circle class="tk-p" cx="57" cy="26" r="2.4" fill="#c4391f" style="animation-delay:.5s"/><circle class="tk-p" cx="36" cy="22" r="2.4" fill="#c4391f" style="animation-delay:.6s"/></g><path class="tk-fit" d="M12 58 L64 20" stroke="#c4391f"/></svg>
+      <p class="tk-n mt-4">02</p><h3>Data science</h3>
+      <dl>
+        <div><dt>Web-scraped dataset</dt><dd>240 Google Flights searches, each run with and without a bag.</dd></div>
+        <div><dt>Great-circle distance</dt><dd>The haversine formula for every route out of Atlanta.</dd></div>
+        <div><dt>Least-squares baseline</dt><dd>A fair price fitted on the competitive routes: $54.8 + $0.0677 a mile.</dd></div>
+        <div><dt>Bounded normalisation</dt><dd>1 &minus; e<sup>&minus;x</sup> keeps extreme fares ranked instead of capped at 1.</dd></div>
+        <div><dt>Robust statistics</dt><dd>Medians and IQRs across the 16 films in the RPDI benchmark.</dd></div>
+      </dl>
+    </article>
+    <article class="tk-col tk-ai" data-reveal>
+      <svg viewBox="0 0 72 72" aria-hidden="true" fill="none" stroke="#1c1a17" stroke-width="1.2"><g class="tk-e"><path d="M12 18 L36 26 M12 18 L36 46 M12 54 L36 26 M12 54 L36 46 M12 36 L36 26 M12 36 L36 46 M36 26 L60 36 M36 46 L60 36"/></g><g fill="#f2ede2" stroke-width="1.5"><circle cx="12" cy="18" r="4"/><circle cx="12" cy="36" r="4"/><circle cx="12" cy="54" r="4"/><circle cx="36" cy="26" r="4"/><circle cx="36" cy="46" r="4"/></g><circle class="tk-o" cx="60" cy="36" r="4" fill="#c4391f" stroke="none"/></svg>
+      <p class="tk-n mt-4">03</p><h3>AI</h3>
+      <dl>
+        <div><dt>LLM-assisted claim extraction</dt><dd>Two RPDI films were scored with AI research, and are labelled AI-scored.</dd></div>
+        <div><dt>Human vs AI stress test</dt><dd>Gemini scored All the President&rsquo;s Men with my method, to see where it breaks.</dd></div>
+        <div><dt>Prompt design</dt><dd>The ADMI collector started as a written spec, turned into Python with Gemini.</dd></div>
+        <div><dt>Disclosure</dt><dd>Every place AI touched the work is marked in the posts and the repos.</dd></div>
+      </dl>
+    </article>
+    <article class="tk-col tk-cs" data-reveal>
+      <svg viewBox="0 0 72 72" aria-hidden="true" fill="none" stroke="#1c1a17" stroke-width="1.5"><rect x="5" y="10" width="62" height="50"/><path d="M5 19 H67"/><circle cx="11" cy="14.5" r="1.4" fill="#1c1a17" stroke="none"/><circle cx="16" cy="14.5" r="1.4" fill="#1c1a17" stroke="none"/><path d="M12 28 l5 4 -5 4" stroke="#c4391f"/><path class="tk-l" d="M21 32 H55"/><path class="tk-l tk-l2" d="M12 42 H46"/><path class="tk-l tk-l3" d="M12 50 H40"/><rect class="tk-cur" x="43" y="46" width="5" height="7" fill="#c4391f" stroke="none"/></svg>
+      <p class="tk-n mt-4">04</p><h3>Computer science</h3>
+      <dl>
+        <div><dt>Python + Playwright</dt><dd>A headless-browser collector with retries, a search log and resumable runs.</dd></div>
+        <div><dt>Browser tools</dt><dd>The ADMI tool scores fares in the page, with CSV, JSON and backup export.</dd></div>
+        <div><dt>Three.js / WebGL</dt><dd>Fig. 1 on this page is drawn in 3D, live, from the real data.</dd></div>
+        <div><dt>Canvas + Web Audio</dt><dd>The intro film was rendered frame by frame in code.</dd></div>
+        <div><dt>Git, GitHub, Vercel</dt><dd>Every project versioned, published and deployed from a repo.</dd></div>
+      </dl>
+    </article>
+  </div>
+  <p class="tk-note" data-reveal>Most of the code was written with AI pair-programming, using Claude and Gemini. The methods, the checks and the decisions are mine, and all of it is documented on GitHub.</p>
+</section>
+<script type="importmap">{"imports":{"three":"/vendor/three.module.min.js"}}</script>
+<script type="module">
+import * as THREE from 'three';
+const cv = document.getElementById('tk-gl'); if (cv) {
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const r = new THREE.WebGLRenderer({ canvas: cv, antialias: true, alpha: true });
+r.setPixelRatio(Math.min(devicePixelRatio, 2)); r.outputColorSpace = THREE.SRGBColorSpace;
+const scene = new THREE.Scene(); const cam = new THREE.PerspectiveCamera(28, 16 / 11, 0.1, 200);
+scene.add(new THREE.HemisphereLight(0xffffff, 0xd8cfbf, 1.6)); const dl = new THREE.DirectionalLight(0xffffff, 1.4); dl.position.set(6, 10, 8); scene.add(dl);
+const plot = new THREE.Group(); scene.add(plot);
+const INK = 0x1c1a17, ACC = 0xc4391f;
+const X = m => (Math.log10(m) - Math.log10(100)) / (Math.log10(5000) - Math.log10(100)) * 10 - 5;
+const Y = v => (Math.log10(v) - Math.log10(0.04)) / (Math.log10(2.5) - Math.log10(0.04)) * 6;
+const Z = a => (a - 2.5) * 1.6;
+const line = (pts, op = 1) => new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts.map(p => new THREE.Vector3(...p))), new THREE.LineBasicMaterial({ color: INK, transparent: op < 1, opacity: op }));
+// floor grid by airline lanes, axes
+for (let a = 1; a <= 4; a++) plot.add(line([[-5, 0, Z(a)], [5, 0, Z(a)]], 0.28));
+for (const m of [100, 250, 500, 1000, 2500, 5000]) plot.add(line([[X(m), 0, Z(1)], [X(m), 0, Z(4)]], 0.18));
+plot.add(line([[-5, 0, Z(4) + 0.6], [5.4, 0, Z(4) + 0.6]]), line([[-5, 0, Z(4) + 0.6], [-5, 6.3, Z(4) + 0.6]]), line([[-5, 0, Z(4) + 0.6], [-5, 0, Z(1) - 0.7]]));
+for (const v of [0.05, 0.1, 0.25, 0.5, 1, 2]) plot.add(line([[-5, Y(v), Z(4) + 0.6], [5, Y(v), Z(4) + 0.6]], 0.12));
+function tag(text, size = 34, color = '#1c1a17', w = 320) { const c = document.createElement('canvas'); c.width = w; c.height = 64; const g = c.getContext('2d');
+  g.font = `500 ${size}px "Instrument Sans", system-ui, sans-serif`; g.fillStyle = color; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(text, w / 2, 32);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: t, transparent: true, depthWrite: false })); s.scale.set(w / 64 * 0.36, 0.36, 1); return s; }
+try { await document.fonts.ready; } catch (e) {}
+const labels = [];
+const L = (t, p, o) => { const s = tag(t, o && o.size, o && o.color, o && o.w); s.position.set(...p); plot.add(s); labels.push(s); };
+for (const m of [100, 500, 1000, 5000]) L(m >= 1000 ? (m / 1000) + 'k mi' : m + ' mi', [X(m), -0.45, Z(4) + 0.9]);
+for (const v of [0.05, 0.25, 1, 2]) L('$' + v, [-5.75, Y(v), Z(4) + 0.6]);
+['1 airline', '2', '3', '4+'].forEach((t, i) => L(t, [5.9, 0, Z(i + 1)], { w: i ? 128 : 320 }));
+L('price per mile', [-5, 6.8, Z(4) + 0.6], { size: 30, w: 360 }); L('distance', [0, -1.05, Z(4) + 1.1], { size: 30 });
+const pts = await (await fetch('/media/admi_points.json')).json();
+const geo = new THREE.SphereGeometry(0.11, 14, 10);
+const mats = { s: new THREE.MeshStandardMaterial({ color: ACC, roughness: 0.4 }), one: new THREE.MeshStandardMaterial({ color: 0x8a4535, roughness: 0.5 }), comp: new THREE.MeshStandardMaterial({ color: INK, roughness: 0.6 }) };
+const groups = { s: [], one: [], comp: [] };
+for (const p of pts) groups[p[5] ? 's' : p[3] === 1 ? 'one' : 'comp'].push(p);
+const inst = [];
+for (const k in groups) { const im = new THREE.InstancedMesh(geo, mats[k], groups[k].length); im.userData.pts = groups[k]; plot.add(im); inst.push(im); }
+// drop lines from the red points
+{ const seg = []; for (const p of groups.s) { const x = X(p[1]), y = Y(p[2]), z = Z(p[3]); seg.push(new THREE.Vector3(x, 0, z), new THREE.Vector3(x, y, z)); }
+  plot.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(seg), new THREE.LineBasicMaterial({ color: ACC, transparent: true, opacity: 0.35 }))); }
+const m4 = new THREE.Matrix4(), jit = i => ((Math.sin(i * 91.7) * 43758.5) % 1) * 0.5;
+function place(k) { inst.forEach(im => { im.userData.pts.forEach((p, i) => { m4.makeTranslation(X(p[1]), Y(p[2]) * k, Z(p[3]) + jit(i + p[1])); im.setMatrixAt(i, m4); }); im.instanceMatrix.needsUpdate = true; }); }
+plot.position.set(0.3, -2.9, 0);
+let yaw = -0.55, pitch = 0.32, drag = null, t0 = null, seen = false, run = false;
+cv.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY, yaw, pitch }; cv.setPointerCapture(e.pointerId); });
+cv.addEventListener('pointermove', e => { if (!drag) return; yaw = drag.yaw + (e.clientX - drag.x) * 0.008; pitch = Math.max(0.02, Math.min(1.1, drag.pitch + (e.clientY - drag.y) * 0.006)); if (!run) draw(performance.now()); });
+addEventListener('pointerup', () => drag = null);
+function size() { const w = cv.clientWidth, h = cv.clientHeight; if (w && h) { r.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); } }
+new ResizeObserver(size).observe(cv); size();
+function draw(now) {
+  if (t0 === null) t0 = now; const t = (now - t0) / 1000;
+  place(reduce ? 1 : Math.min(1, 1 - Math.pow(1 - Math.min(1, t / 1.6), 3)));
+  const auto = (reduce || drag) ? 0 : Math.sin(t * 0.25) * 0.35;
+  const yy = yaw + auto, d = cv.clientWidth < 600 ? 24 : 23;
+  cam.position.set(Math.sin(yy) * Math.cos(pitch) * d, Math.sin(pitch) * d, Math.cos(yy) * Math.cos(pitch) * d); cam.lookAt(0, 0.4, 0);
+  r.render(scene, cam);
+}
+function loop(now) { if (!run) return; draw(now); requestAnimationFrame(loop); }
+new IntersectionObserver(es => es.forEach(e => { const on = e.isIntersecting && cv.offsetParent;
+  if (on && !run) { run = !reduce; if (run) requestAnimationFrame(loop); else draw(performance.now()); } else if (!on) run = false; }), { rootMargin: '100px' }).observe(cv);
+}
+</script>
+
 <!-- ============================ PROJECTS ============================ -->
 <section id="projects" class="relative mt-36 md:mt-56">
   <header class="px-6 md:px-14 lg:px-20 grid gap-y-8 md:grid-cols-12 md:gap-x-10">
@@ -1866,7 +2036,7 @@ html.intro-on,html.intro-on body{overflow:hidden}
 (function(){
   var $=function(q,c){return (c||document).querySelector(q)};
   var $$=function(q,c){return Array.prototype.slice.call((c||document).querySelectorAll(q))};
-  var VIEWS={home:['home','featured'],projects:['projects'],hcsl:['hcsl'],screenplays:['screenplays'],writing:['writing'],photos:['photos'],about:['about'],contact:['contact']};
+  var VIEWS={home:['home','featured','toolkit'],projects:['projects'],hcsl:['hcsl'],screenplays:['screenplays'],writing:['writing'],photos:['photos'],about:['about'],contact:['contact']};
   var tops=$$('main>section');
   function viewOf(el){var sec=el.closest('main>section');if(!sec)return 'home';for(var k in VIEWS)if(VIEWS[k].indexOf(sec.id)>-1)return k;return 'home'}
   var ind=$('#nav-ind');var CUR='home';
