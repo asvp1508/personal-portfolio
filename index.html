@@ -67,10 +67,10 @@ footer{margin-top:6rem!important}
 @media(min-width:1024px){
  .f3d-row{grid-template-columns:minmax(0,1fr)!important;gap:2rem!important}
  .f3d-txt{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:3.5rem;grid-auto-flow:dense;align-items:start}
- .f3d-txt>.label,.f3d-txt>h4{grid-column:1}
- .f3d-txt>:not(.label):not(h4){grid-column:2;margin-top:0}
- .f3d-txt>:not(.label):not(h4):first-of-type{grid-row:1 / span 2}
- .f3d canvas{aspect-ratio:21/9}
+ .f3d-txt>.label{grid-column:1;grid-row:1}
+ .f3d-txt>h4{grid-column:1;grid-row:2}
+ .f3d-txt>:not(.label):not(h4){grid-column:2;grid-row:1 / span 3;margin-top:0}
+ .f3d-row .f3d canvas{aspect-ratio:21/9}
 }
 
 .vt-bar button em{font-family:Instrument Sans,sans-serif;font-style:normal;font-size:.72rem;font-weight:500;letter-spacing:.04em;max-width:12.5rem;line-height:1.3;text-align:left;align-self:center;color:inherit;opacity:.8}
