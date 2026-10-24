@@ -2194,7 +2194,7 @@ html.intro-on,html.intro-on body{overflow:hidden}
     var cv=document.createElement('canvas'); cv.className='vtx-cv'; cv.setAttribute('aria-hidden','true');
     if(getComputedStyle(h).position==='static') h.style.position='relative';
     h.appendChild(v); h.appendChild(cv);
-    var f=(h.getAttribute('data-focus')||'0.5 0.5').split(' ').map(Number), g=cv.getContext('2d'), L=null, live=false, ready=false;
+    var f=(h.getAttribute('data-focus')||'0.5 0.5').split(' ').map(Number), g=cv.getContext('2d',{willReadFrequently:false}), o=document.createElement('canvas'), og=o.getContext('2d'), L=null, live=false, ready=false, checked=false;
     function layout(){
       var tn=null; for(var i=0;i<h.childNodes.length;i++){ if(h.childNodes[i].nodeType===3&&h.childNodes[i].textContent.trim()){ tn=h.childNodes[i]; break; } } if(!tn) return;
       var r=document.createRange(); r.selectNodeContents(tn); var tr=r.getBoundingClientRect(), hr=h.getBoundingClientRect(), cs=getComputedStyle(h);
@@ -2209,17 +2209,23 @@ html.intro-on,html.intro-on body{overflow:hidden}
       if(!L) return; g.setTransform(L.dpr,0,0,L.dpr,0,0); g.clearRect(0,0,L.w,L.h); g.globalCompositeOperation='source-over';
       g.font=L.font; try{ g.letterSpacing=L.ls==='normal'?'0px':L.ls; }catch(e){}
       g.textBaseline='alphabetic'; g.textAlign='left';
-      var m=g.measureText(L.text); var base=L.pad+m.fontBoundingBoxAscent;
+      var m=g.measureText(L.text); var asc=m.fontBoundingBoxAscent||m.actualBoundingBoxAscent||parseFloat(L.font.split(' ')[2])*0.8; var base=L.pad+asc;
       g.fillStyle='#1c1a17'; g.fillText(L.text,L.pad,base);
       if(ready&&v.videoWidth){
-        g.globalCompositeOperation='source-in';
+        // copy the frame onto a plain canvas first, then mask canvas-to-canvas (Safari mishandles masking a video directly)
         var vw=v.videoWidth, vh=v.videoHeight, s=Math.max(L.w/vw,L.h/vh), dw=vw*s, dh=vh*s;
-        g.drawImage(v,(L.w-dw)*f[0],(L.h-dh)*f[1],dw,dh);
+        if(o.width!==cv.width||o.height!==cv.height){ o.width=cv.width; o.height=cv.height; }
+        og.setTransform(L.dpr,0,0,L.dpr,0,0); og.clearRect(0,0,L.w,L.h);
+        og.drawImage(v,(L.w-dw)*f[0],(L.h-dh)*f[1],dw,dh);
+        g.setTransform(1,0,0,1,0,0); g.globalCompositeOperation='source-in';
+        g.drawImage(o,0,0);
         g.globalCompositeOperation='source-over';
+        if(!checked){ checked=true; try{ var px=g.getImageData(1,1,1,1).data; if(px[3]>0) fail(); }catch(e){} }
       }
     }
+    function fail(){ live=false; ready=false; try{v.pause();}catch(e){} h.classList.remove('vtx-on'); cv.style.display='none'; }
     v.addEventListener('loadeddata',function(){ ready=true; draw(); });
-    v.addEventListener('error',function(){ ready=false; h.classList.remove('vtx-on'); cv.style.display='none'; });
+    v.addEventListener('error',fail);
     function tick(){ if(!live) return; draw(); if(v.requestVideoFrameCallback) v.requestVideoFrameCallback(tick); else requestAnimationFrame(tick); }
     h.classList.add('vtx-on');
     if('IntersectionObserver' in window){
