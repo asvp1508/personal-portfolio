@@ -1905,7 +1905,7 @@ html.intro-on,html.intro-on body{overflow:hidden}
 
     <form id="msg" novalidate class="md:col-span-5 md:col-start-8 md:mt-24" data-reveal style="--d:140ms">
       <h3 class="font-serif text-3xl font-semibold tracking-tight">Send a Message</h3>
-      <p class="mt-3 max-w-sm text-sm leading-relaxed text-bone/55">Opens your mail client with the fields below. Nothing is sent or stored by this page.</p>
+      <p class="mt-3 max-w-sm text-sm leading-relaxed text-bone/55">Write it here, then pick where to send it from: Gmail, Outlook or your mail app open with everything filled in. You press send there.</p>
       <label class="label mt-10 block">Name
         <input id="f-name" type="text" autocomplete="name" class="mt-1 block w-full border-0 border-b border-white/20 bg-transparent px-0 py-3 text-base text-bone transition-colors duration-300 placeholder:text-bone/25 focus:border-bronze focus:outline-none focus:ring-0" placeholder="Your name">
       </label>
@@ -1916,6 +1916,16 @@ html.intro-on,html.intro-on body{overflow:hidden}
         <textarea id="f-message" rows="4" class="mt-1 block resize-none w-full border-0 border-b border-white/20 bg-transparent px-0 py-3 text-base text-bone transition-colors duration-300 placeholder:text-bone/25 focus:border-bronze focus:outline-none focus:ring-0" placeholder="Your message..."></textarea>
       </label>
       <button type="submit" class="ed-btn mt-10">Send message</button>
+      <div id="send-via" hidden class="mt-8">
+        <p class="label">Send it from</p>
+        <div class="mt-4 flex flex-wrap" style="gap:.75rem">
+          <a id="via-gmail" target="_blank" rel="noopener" class="ed-btn">Gmail</a>
+          <a id="via-outlook" target="_blank" rel="noopener" class="ed-btn">Outlook</a>
+          <a id="via-app" class="ed-btn">Mail app</a>
+          <button type="button" id="via-copy" class="ed-btn">Copy message</button>
+        </div>
+        <p id="via-note" class="mt-4 max-w-sm text-sm leading-relaxed text-bone/55">Your message only goes out once you press send in your email. If none of these work, copy it and send it to pathiarjun15@gmail.com.</p>
+      </div>
     </form>
   </div>
 
@@ -2130,8 +2140,18 @@ html.intro-on,html.intro-on body{overflow:hidden}
     var name = $('#f-name').value || '(no name)';
     var subject = $('#f-subject').value || 'Portfolio contact';
     var message = $('#f-message').value || '';
-    location.href = 'mailto:pathiarjun15@gmail.com?subject=' + encodeURIComponent(subject) +
-      '&body=' + encodeURIComponent('From: ' + name + '\n\n' + message);
+    var to = 'pathiarjun15@gmail.com', body = 'From: ' + name + '\n\n' + message;
+    var su = encodeURIComponent(subject), bo = encodeURIComponent(body);
+    $('#via-gmail').href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + to + '&su=' + su + '&body=' + bo;
+    $('#via-outlook').href = 'https://outlook.live.com/mail/0/deeplink/compose?to=' + to + '&subject=' + su + '&body=' + bo;
+    $('#via-app').href = 'mailto:' + to + '?subject=' + su + '&body=' + bo;
+    var box = $('#send-via'); box.hidden = false; box.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    $('#via-copy').onclick = function () {
+      var txt = 'To: ' + to + '\nSubject: ' + subject + '\n\n' + body, b = this;
+      var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy message'; }, 2200); };
+      if (navigator.clipboard) navigator.clipboard.writeText(txt).then(done, function () { window.prompt('Copy this:', txt); });
+      else window.prompt('Copy this:', txt);
+    };
   });
 })();
 </script>
