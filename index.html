@@ -2230,7 +2230,11 @@ html.intro-on,html.intro-on body{overflow:hidden}
 })();
 </script>
 <!-- ============================ FOOTAGE INSIDE PROJECT TITLES ============================ -->
-<style>.vtx-cv{position:absolute;pointer-events:none}.vtx-on{color:transparent!important}.vtx-vid{position:absolute;width:2px;height:2px;opacity:.01;pointer-events:none;left:0;top:0}</style>
+<style>.vtx-cv{position:absolute;pointer-events:none}.vtx-on{color:transparent!important}.vtx-vid{position:absolute;width:2px;height:2px;opacity:.01;pointer-events:none;left:0;top:0}
+/* Screenplay tabs: titles never wrap. Any title too wide for its button is
+   scaled down to fit by the fitFilmTabs script below. */
+[data-film-tab]>span:last-child{white-space:nowrap;display:inline-block}
+</style>
 <script>
 (function(){
   var els=[].slice.call(document.querySelectorAll('[data-vtext]')); if(!els.length) return;
@@ -2290,5 +2294,43 @@ html.intro-on,html.intro-on body{overflow:hidden}
 </script>
 <script type="module" src="/js/figs.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
+
+<script>
+/* Screenplay tabs - keep every title on one line.
+   Short titles keep the size the stylesheet gives them; a title wider than
+   its button is scaled down, and only by as much as it needs. Runs again
+   when the section becomes visible or the column width changes. */
+(function () {
+  var list = document.querySelector('ul[role="tablist"]');
+  if (!list) return;
+  var tabs = [].slice.call(list.querySelectorAll('[data-film-tab]'));
+  if (!tabs.length) return;
+
+  function fit() {
+    if (!list.offsetParent) return;                 // section hidden: nothing to measure
+    tabs.forEach(function (btn) {
+      var title = btn.querySelector('span:last-child');
+      if (!title) return;
+      title.style.fontSize = '';                    // reset to the stylesheet size
+      var base = parseFloat(getComputedStyle(title).fontSize);
+      if (!base) return;
+      var num = btn.querySelector('span:first-child');
+      var gap = parseFloat(getComputedStyle(btn).columnGap) || 0;
+      var avail = btn.clientWidth - (num ? num.getBoundingClientRect().width : 0) - gap - 1;
+      var natural = title.getBoundingClientRect().width;   // nowrap, so this is the true width
+      if (avail > 0 && natural > avail) title.style.fontSize = (base * avail / natural) + 'px';
+    });
+  }
+
+  var lastW = -1;
+  function onChange() { var w = list.clientWidth; if (w === lastW) return; lastW = w; fit(); }
+
+  if (window.ResizeObserver) new ResizeObserver(onChange).observe(list);
+  window.addEventListener('resize', onChange);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
 </body>
 </html>
